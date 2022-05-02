@@ -21,24 +21,27 @@ function Wishtree() {
      */
 
     const fontloader = new FontLoader();
-    fontloader.load("assets/fonts/helvetiker_regular.typeface.json", (font) => {
-      const textGeometry = new TextGeometry("YEPS!", {
-        font,
-        size: 1,
-        height: 0.2,
-        curveSegments: 6,
-        bevelEnabled: true,
-        bevelThickness: 0.03,
-        bevelSize: 0.02,
-        bevelOffset: 0,
-        bevelSegments: 4,
-      });
+    fontloader.load(
+      "https://threejsfundamentals.org/threejs/resources/threejs/fonts/helvetiker_regular.typeface.json",
+      (font) => {
+        const textGeometry = new TextGeometry("YEPS!", {
+          font,
+          size: 1,
+          height: 0.2,
+          curveSegments: 6,
+          bevelEnabled: true,
+          bevelThickness: 0.03,
+          bevelSize: 0.02,
+          bevelOffset: 0,
+          bevelSegments: 4,
+        });
 
-      textGeometry.center();
-      const mat = new THREE.MeshBasicMaterial({ color: "#ff00ff" });
-      const text = new THREE.Mesh(textGeometry, mat);
-      scene.add(text);
-    });
+        textGeometry.center();
+        const mat = new THREE.MeshBasicMaterial({ color: "#ff00ff" });
+        const text = new THREE.Mesh(textGeometry, mat);
+        scene.add(text);
+      }
+    );
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current.appendChild(renderer.domElement);
