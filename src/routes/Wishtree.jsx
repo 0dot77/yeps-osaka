@@ -21,7 +21,7 @@ function Wishtree() {
      */
 
     const fontloader = new FontLoader();
-    fontloader.load("assets/fonts/Oleo Script Swash Caps_Regular.json", (font) => {
+    fontloader.load("src/assets/fonts/Oleo Script Swash Caps_Regular.json", (font) => {
       const textGeometry = new TextGeometry("YEPS!", {
         font,
         size: 1,
