@@ -12,6 +12,14 @@ function Wishtree() {
   const mountRef = useRef(null);
 
   useEffect(() => {
+    /**
+     * Basic Settings
+     */
+    const sizes = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
@@ -19,7 +27,8 @@ function Wishtree() {
     /**
      * Text
      */
-
+    const textureLoader = new THREE.TextureLoader();
+    const matcapTexture = textureLoader.load(`/assets/textures/font-texture.png`);
     const fontloader = new FontLoader();
     fontloader.load("/assets/fonts/Oleo Script Swash Caps_Regular.json", (font) => {
       const textGeometry = new TextGeometry("YEPS!", {
@@ -35,7 +44,7 @@ function Wishtree() {
       });
 
       textGeometry.center();
-      const mat = new THREE.MeshBasicMaterial({ color: "#ff0" });
+      const mat = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
       const text = new THREE.Mesh(textGeometry, mat);
       scene.add(text);
     });
@@ -57,13 +66,19 @@ function Wishtree() {
       renderer.render(scene, camera);
     };
 
-    let onWindowResize = function () {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
+    window.addEventListener("resize", () => {
+      // Update Sizes
+      sizes.width = window.innerWidth;
+      sizes.height = window.innerHeight;
 
-    window.addEventListener("resize", onWindowResize, false);
+      // Update Camera
+      camera.aspect = sizes.width / sizes.height;
+      camera.updateProjectionMatrix();
+
+      // Update Renderer
+      renderer.setSize(sizes.width, sizes.height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    });
 
     animate();
 
