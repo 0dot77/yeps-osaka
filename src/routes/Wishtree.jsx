@@ -4,6 +4,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
+
 /**
  * THREE Structure
  */
@@ -20,7 +21,7 @@ function Wishtree() {
      */
 
     const fontloader = new FontLoader();
-    fontloader.load("static/fonts/helvetiker_regular.typeface.json", (font) => {
+    fontloader.load("assets/fonts/helvetiker_regular.typeface.json", (font) => {
       const textGeometry = new TextGeometry("YEPS!", {
         font,
         size: 1,
