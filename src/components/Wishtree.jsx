@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
+import Loader from './Loader';
+import Tree from './Tree';
 
 function Wishtree() {
   return (
     <Canvas>
-      <pointLight position={[1, 1, 1]} />
-      <mesh>
-        <sphereBufferGeometry />
-        <meshStandardMaterial color="hotpink" />
-      </mesh>
+      <Suspense fallback={<Loader />}>
+        <Tree />
+      </Suspense>
     </Canvas>
   );
 }
