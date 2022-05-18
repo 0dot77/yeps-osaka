@@ -89,6 +89,19 @@ const GlobalStyle = createGlobalStyle`
     font: inherit;
     vertical-align: baseline;
   }
+  /*FONT*/
+  @font-face {
+    font-family: k-menu;
+    src: url('/assets/fonts/k-menu.ttf');
+  }
+  @font-face {
+    font-family: j-font;
+    src: url('/assets/fonts/jap-font.ttf');
+  }
+  @font-face {
+    font-family: dok-lip;
+    src: url('/assets/fonts/main-font.ttf');
+  }
   /* HTML5 display-role reset for older browsers */
   article,
   aside,
@@ -124,6 +137,10 @@ const GlobalStyle = createGlobalStyle`
   table {
     border-collapse: collapse;
     border-spacing: 0;
+  }
+
+  a {
+    text-decoration: none;
   }
 `;
 

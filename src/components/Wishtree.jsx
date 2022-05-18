@@ -12,7 +12,7 @@ const Container = styled.div`
 /**
  * THREE Structure
  */
-function Wishtree() {
+function Wishtree({ isMenuClicked, isboxClicked }) {
   const mountRef = useRef(null);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function Wishtree() {
         scene.add(mesh);
       },
       (ply) => {
-        console.log((ply.loaded / ply.total) * 100 + '% loaded');
+        // console.log((ply.loaded / ply.total) * 100 + '% loaded');
       },
       () => {
         console.log('load error!');
@@ -81,9 +81,11 @@ function Wishtree() {
     mountRef.current.appendChild(renderer.domElement);
 
     const animate = function () {
-      requestAnimationFrame(animate);
-      controls.update();
-      renderer.render(scene, camera);
+      if (mountRef !== null) {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      }
     };
 
     window.addEventListener('resize', () => {
@@ -102,13 +104,13 @@ function Wishtree() {
 
     animate();
 
-    return () => mountRef.current.removeChild(renderer.domElement);
+    return () => {
+      if (isMenuClicked) {
+        mountRef.current.remove();
+      }
+    };
   }, []);
-  return (
-    <Container>
-      <div ref={mountRef}></div>;
-    </Container>
-  );
+  return <div ref={mountRef}></div>;
 }
 
 export default Wishtree;

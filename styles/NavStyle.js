@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+export const MainPageContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(180deg, #095882 0%, #000000 100%);
+  overflow: hidden;
+  display: flex;
+`;
+
 export const NavKoreanContainer = styled.div`
   width: 230px;
   height: 100%;
@@ -30,10 +38,6 @@ export const NavJapContainer = styled.div`
 `;
 
 export const KTitle = styled.h1`
-  @font-face {
-    font-family: dok-lip;
-    src: url('/assets/fonts/main-font.ttf');
-  }
   font-size: 80px;
   font-family: dok-lip;
   white-space: pre-wrap;
@@ -42,10 +46,6 @@ export const KTitle = styled.h1`
 `;
 
 export const JTitle = styled(KTitle)`
-  @font-face {
-    font-family: j-font;
-    src: url('/assets/fonts/jap-font.ttf');
-  }
   font-family: j-font;
 `;
 
@@ -57,20 +57,33 @@ export const CanvasContainer = styled.div`
 export const DescriptionContainer = styled.div`
   font-size: 20px;
   line-height: 1.5;
+  font-family: k-menu;
 `;
 
-export const MenuContainer = styled.div``;
+export const MenuContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const KMenu = styled(Link)`
-  display: block;
   font-size: 34px;
-  line-height: 2.87;
   text-align: center;
   color: #ffffff;
-  text-shadow: 0px 4px 19px rgba(255, 255, 255, 0.9);
+  font-family: k-menu;
+  line-height: 2;
+  &:hover {
+    text-shadow: 0px 4px 19px rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #ffffff;
+  }
 `;
 
 export const JMenu = styled(KMenu)`
-  line-height: 3.75;
+  line-height: 2.5;
   font-size: 28px;
+`;
+
+export const SectionNavCanvasContainer = styled(Link)`
+  display: block;
+  width: 230px;
+  height: 160px;
 `;

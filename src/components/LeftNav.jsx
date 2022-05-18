@@ -9,8 +9,9 @@ import {
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import MainBox from '../objects/MainBox';
+import { kmenu } from '../db/menu';
 
-export default function LeftNav({ setIsBoxClicked, isboxClicked }) {
+export default function LeftNav({ setIsBoxClicked, isboxClicked, setIsMenuClicked }) {
   const handleChangeMenu = () => {
     setIsBoxClicked((current) => !current);
   };
@@ -31,10 +32,17 @@ export default function LeftNav({ setIsBoxClicked, isboxClicked }) {
         </DescriptionContainer>
       ) : (
         <MenuContainer>
-          <KMenu to="/real-time-wishes">실시간 소원</KMenu>
-          <KMenu to="/interviews">인터뷰 자료</KMenu>
-          <KMenu to="/wish-and-temple">소원, 신당</KMenu>
-          <KMenu to="/go-temple">신당 들어가기</KMenu>
+          {kmenu.map((menu) => (
+            <KMenu
+              key={menu.id}
+              to={menu.url}
+              onClick={() => {
+                setIsMenuClicked((current) => !current);
+              }}
+            >
+              {menu.title}
+            </KMenu>
+          ))}
         </MenuContainer>
       )}
     </NavKoreanContainer>

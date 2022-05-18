@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import MainBox from '../objects/MainBox';
+import { jmenu } from '../db/menu';
 
 export default function LeftNav({ setIsBoxClicked, isboxClicked }) {
   const handleChangeMenu = () => {
@@ -31,10 +32,11 @@ export default function LeftNav({ setIsBoxClicked, isboxClicked }) {
         </DescriptionContainer>
       ) : (
         <MenuContainer>
-          <JMenu to="/real-time-wishes">リアルタイム願い</JMenu>
-          <JMenu to="/interviews">インタビュー資料</JMenu>
-          <JMenu to="/wish-and-temple">願い、 新党</JMenu>
-          <JMenu to="/go-temple">新党入り</JMenu>
+          {jmenu.map((menu) => (
+            <JMenu key={menu.id} to={menu.url}>
+              {menu.title}
+            </JMenu>
+          ))}
         </MenuContainer>
       )}
     </NavJapContainer>

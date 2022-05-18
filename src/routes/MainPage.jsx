@@ -3,23 +3,22 @@ import Wishtree from '../components/Wishtree';
 import styled from 'styled-components';
 import LeftNav from '../components/LeftNav';
 import RightNav from '../components/RightNav';
-
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(180deg, #095882 0%, #000000 100%);
-  overflow: hidden;
-  display: flex;
-`;
+import { MainPageContainer } from '../../styles/NavStyle';
 
 function MainPage() {
   const [isboxClicked, setIsBoxClicked] = useState(true);
+  const [isMenuClicked, setIsMenuClicked] = useState(false);
+  const [isRealTime, setIsRealTime] = useState(false);
+  const [isInterview, setIsInterView] = useState(false);
+  const [isTemple, setIsTemple] = useState(false);
+  const [isWebGame, setIsWebGame] = useState(false);
+  console.log('box clicked?', isboxClicked);
   return (
-    <Container>
-      <LeftNav setIsBoxClicked={setIsBoxClicked} isboxClicked={isboxClicked} />
-      <Wishtree />
+    <MainPageContainer>
+      <LeftNav setIsBoxClicked={setIsBoxClicked} isboxClicked={isboxClicked} setIsMenuClicked={setIsMenuClicked} />
+      <Wishtree isMenuClicked={isMenuClicked} />
       <RightNav setIsBoxClicked={setIsBoxClicked} isboxClicked={isboxClicked} />
-    </Container>
+    </MainPageContainer>
   );
 }
 

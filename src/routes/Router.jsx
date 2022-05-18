@@ -11,10 +11,10 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />}></Route>
-        <Route path="/real-time-wishes" element={<RealTimeWishes />}></Route>
+        <Route path="/realtime-wishes" element={<RealTimeWishes />}></Route>
         <Route path="/interviews" element={<Interviews />}></Route>
         <Route path="/wish-and-temple" element={<WishAndTemple />}></Route>
-        <Route path="/go-temple" element={<WebGame />}></Route>
+        <Route path="/web-game" element={<WebGame />}></Route>
       </Routes>
     </BrowserRouter>
   );
