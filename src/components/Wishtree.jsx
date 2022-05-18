@@ -41,11 +41,11 @@ function Wishtree() {
         mat.vertexColors = true;
         const mesh = new THREE.Points(geo, mat);
         mesh.rotation.x = 30;
-        mesh.position.x = 4;
+        mesh.position.x = 2;
         mesh.position.y = -0.25;
-        mesh.position.z = -1;
+        mesh.position.z = 1;
 
-        // mesh.scale.multiplyScalar(0.2);
+        mesh.scale.multiplyScalar(0.5);
         // mesh.castShadow = true;
         // mesh.receiveShadow = true;
 
