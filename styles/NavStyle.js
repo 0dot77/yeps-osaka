@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const NavKoreanContainer = styled.div`
@@ -56,4 +57,20 @@ export const CanvasContainer = styled.div`
 export const DescriptionContainer = styled.div`
   font-size: 20px;
   line-height: 1.5;
+`;
+
+export const MenuContainer = styled.div``;
+
+export const KMenu = styled(Link)`
+  display: block;
+  font-size: 34px;
+  line-height: 2.87;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0px 4px 19px rgba(255, 255, 255, 0.9);
+`;
+
+export const JMenu = styled(KMenu)`
+  line-height: 3.75;
+  font-size: 28px;
 `;
