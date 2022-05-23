@@ -5,7 +5,7 @@ import {
   DescriptionContainer,
   MenuContainer,
   JMenu,
-} from '../../styles/NavStyle';
+} from '../styles/NavStyle';
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import MainBox from '../objects/MainBox';

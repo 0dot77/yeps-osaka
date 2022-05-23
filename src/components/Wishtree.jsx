@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
-import { Entrance, Icon, ActionContainer, ActionText, Divider, IconBall } from '../../styles/Entrance';
+import { Entrance, Icon, ActionContainer, ActionText, Divider, IconBall } from '../styles/Entrance';
 import styled from 'styled-components';
 
 const WishTreeContainer = styled.div`
