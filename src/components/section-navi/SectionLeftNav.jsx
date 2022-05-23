@@ -16,7 +16,7 @@ export default function SectionLeftNav() {
       </SectionNavCanvasContainer>
       <MenuContainer>
         {kmenu.map((menu) => (
-          <KMenu key={menu.id} to={menu.url}>
+          <KMenu key={menu.id} to={menu.url} className={menu.class}>
             {menu.title}
           </KMenu>
         ))}

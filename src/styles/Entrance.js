@@ -27,6 +27,7 @@ export const Divider = styled.hr`
   position: absolute;
   width: 95%;
   bottom: 52%;
+  border-top: none;
   border-bottom: 5px dotted white;
 `;
 

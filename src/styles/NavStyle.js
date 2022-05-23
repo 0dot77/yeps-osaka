@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const NavKoreanContainer = styled.div`
   width: 230px;
@@ -68,11 +68,52 @@ export const KMenu = styled(Link)`
     text-shadow: 0px 4px 19px rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid #ffffff;
   }
+  &.realTime {
+    text-shadow: ${(props) => (props.ismenuhovered === 'realTime' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null)};
+    border-bottom: ${(props) => (props.ismenuhovered === 'realTime' ? `1px solid #ffffff` : null)};
+  }
+
+  &.interviews {
+    text-shadow: ${(props) => (props.ismenuhovered === 'interviews' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null)};
+    border-bottom: ${(props) => (props.ismenuhovered === 'interviews' ? `1px solid #ffffff` : null)};
+  }
+
+  &.wishAndTemple {
+    text-shadow: ${(props) =>
+      props.ismenuhovered === 'wishAndTemple' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null};
+    border-bottom: ${(props) => (props.ismenuhovered === 'wishAndTemple' ? `1px solid #ffffff` : null)};
+  }
+
+  &.webGame {
+    text-shadow: ${(props) => (props.ismenuhovered === 'webGame' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null)};
+    border-bottom: ${(props) => (props.ismenuhovered === 'webGame' ? `1px solid #ffffff` : null)};
+  }
 `;
 
 export const JMenu = styled(KMenu)`
   line-height: 2.5;
   font-size: 28px;
+
+  &.realTime {
+    text-shadow: ${(props) => (props.ismenuhovered === 'realTime' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null)};
+    border-bottom: ${(props) => (props.ismenuhovered === 'realTime' ? `1px solid #ffffff` : null)};
+  }
+
+  &.interviews {
+    text-shadow: ${(props) => (props.ismenuhovered === 'interviews' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null)};
+    border-bottom: ${(props) => (props.ismenuhovered === 'interviews' ? `1px solid #ffffff` : null)};
+  }
+
+  &.wishAndTemple {
+    text-shadow: ${(props) =>
+      props.ismenuhovered === 'wishAndTemple' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null};
+    border-bottom: ${(props) => (props.ismenuhovered === 'wishAndTemple' ? `1px solid #ffffff` : null)};
+  }
+
+  &.webGame {
+    text-shadow: ${(props) => (props.ismenuhovered === 'webGame' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null)};
+    border-bottom: ${(props) => (props.ismenuhovered === 'webGame' ? `1px solid #ffffff` : null)};
+  }
 `;
 
 export const SectionNavCanvasContainer = styled(Link)`

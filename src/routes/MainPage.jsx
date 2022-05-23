@@ -9,7 +9,7 @@ function MainPage() {
   const [isMenuClicked, setIsMenuClicked] = useState(false);
 
   // 메뉴를 거울처럼 hovering 하기
-  const [isMenuHovered, setIsMenuHovered] = useState(false);
+  const [ismenuhovered, setIsmenuhovered] = useState(null);
 
   // 처음 진입했을 때의 설명 (스크롤)
   const [isFristEntrance, setIsFristEntrance] = useState(false);
@@ -27,15 +27,15 @@ function MainPage() {
         setIsBoxClicked={setIsBoxClicked}
         isboxClicked={isboxClicked}
         setIsMenuClicked={setIsMenuClicked}
-        setIsMenuHovered={setIsMenuHovered}
-        isMenuHovered={isMenuHovered}
+        setIsmenuhovered={setIsmenuhovered}
+        ismenuhovered={ismenuhovered}
       />
       <Wishtree isMenuClicked={isMenuClicked} isFristEntrance={isFristEntrance} />
       <RightNav
         setIsBoxClicked={setIsBoxClicked}
         isboxClicked={isboxClicked}
-        setIsMenuHovered={setIsMenuHovered}
-        isMenuHovered={isMenuHovered}
+        setIsmenuhovered={setIsmenuhovered}
+        ismenuhovered={ismenuhovered}
       />
     </MainPageContainer>
   );

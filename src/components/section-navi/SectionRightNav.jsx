@@ -16,7 +16,7 @@ export default function SectionRightNav() {
       </SectionNavCanvasContainer>
       <MenuContainer>
         {jmenu.map((menu) => (
-          <JMenu key={menu.id} to={menu.url}>
+          <JMenu key={menu.id} to={menu.url} className={menu.class}>
             {menu.title}
           </JMenu>
         ))}

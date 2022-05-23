@@ -11,7 +11,7 @@ import { Canvas } from '@react-three/fiber';
 import MainBox from '../objects/MainBox';
 import { jmenu } from '../db/menu';
 
-export default function LeftNav({ setIsBoxClicked, isboxClicked }) {
+export default function LeftNav({ setIsBoxClicked, isboxClicked, setIsmenuhovered, ismenuhovered }) {
   const handleChangeMenu = () => {
     setIsBoxClicked((current) => !current);
   };
@@ -34,9 +34,20 @@ export default function LeftNav({ setIsBoxClicked, isboxClicked }) {
           木の間にかかっている願いを探してみてください。
         </DescriptionContainer>
       ) : (
-        <MenuContainer className="main-container">
+        <MenuContainer>
           {jmenu.map((menu) => (
-            <JMenu key={menu.id} to={menu.url} className={menu.class}>
+            <JMenu
+              key={menu.id}
+              to={menu.url}
+              className={menu.class}
+              onMouseEnter={() => {
+                setIsmenuhovered(menu.class);
+              }}
+              onMouseLeave={() => {
+                setIsmenuhovered(null);
+              }}
+              ismenuhovered={ismenuhovered}
+            >
               {menu.title}
             </JMenu>
           ))}
