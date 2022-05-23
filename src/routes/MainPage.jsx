@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Wishtree from '../components/Wishtree';
 import LeftNav from '../components/LeftNav';
 import RightNav from '../components/RightNav';
-import MainPageContainer from '../../styles/MainPage';
+import MainPageContainer from '../../styles/MainPageContainer';
 
 function MainPage() {
   const [isboxClicked, setIsBoxClicked] = useState(true);

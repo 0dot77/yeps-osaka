@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavKoreanContainer, KTitle, KMenu, MenuContainer, SectionNavCanvasContainer } from '../../../styles/navStyle';
+import { NavKoreanContainer, KTitle, KMenu, MenuContainer, SectionNavCanvasContainer } from '../../../styles/NavStyle';
 import { Canvas } from '@react-three/fiber';
 import MainBox from '../../objects/MainBox';
 import { kmenu } from '../../db/menu';
