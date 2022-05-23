@@ -1,14 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const MainPageContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(180deg, #095882 0%, #000000 100%);
-  overflow: hidden;
-  display: flex;
-`;
-
 export const NavKoreanContainer = styled.div`
   width: 230px;
   height: 100%;
@@ -38,7 +30,7 @@ export const NavJapContainer = styled.div`
 `;
 
 export const KTitle = styled.h1`
-  font-size: 80px;
+  font-size: 90px;
   font-family: dok-lip;
   white-space: pre-wrap;
   text-align: center;
@@ -71,6 +63,7 @@ export const KMenu = styled(Link)`
   color: #ffffff;
   font-family: k-menu;
   line-height: 2;
+
   &:hover {
     text-shadow: 0px 4px 19px rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid #ffffff;

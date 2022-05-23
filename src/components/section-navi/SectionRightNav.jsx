@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavJapContainer, JTitle, JMenu, MenuContainer, SectionNavCanvasContainer } from '../../../styles/NavStyle';
+import { NavJapContainer, JTitle, JMenu, MenuContainer, SectionNavCanvasContainer } from '../../../styles/navStyle';
 import { Canvas } from '@react-three/fiber';
 import MainBox from '../../objects/MainBox';
 import { jmenu } from '../../db/menu';

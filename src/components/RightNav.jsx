@@ -5,7 +5,7 @@ import {
   DescriptionContainer,
   MenuContainer,
   JMenu,
-} from '../../styles/NavStyle';
+} from '../../styles/navStyle';
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import MainBox from '../objects/MainBox';
@@ -15,6 +15,9 @@ export default function LeftNav({ setIsBoxClicked, isboxClicked }) {
   const handleChangeMenu = () => {
     setIsBoxClicked((current) => !current);
   };
+
+  // 마우스 호버 되었을 때 왼쪽 오른쪽 전부 호버링 되도록 설정하기
+  const handleMouseHover = () => {};
   return (
     <NavJapContainer>
       <JTitle>{'村,\n所願,\n神堂'}</JTitle>
@@ -31,9 +34,9 @@ export default function LeftNav({ setIsBoxClicked, isboxClicked }) {
           木の間にかかっている願いを探してみてください。
         </DescriptionContainer>
       ) : (
-        <MenuContainer>
+        <MenuContainer className="main-container">
           {jmenu.map((menu) => (
-            <JMenu key={menu.id} to={menu.url}>
+            <JMenu key={menu.id} to={menu.url} className={menu.class}>
               {menu.title}
             </JMenu>
           ))}

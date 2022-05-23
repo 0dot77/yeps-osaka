@@ -5,13 +5,15 @@ import {
   DescriptionContainer,
   KMenu,
   MenuContainer,
-} from '../../styles/NavStyle';
+} from '../../styles/navStyle';
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import MainBox from '../objects/MainBox';
 import { kmenu } from '../db/menu';
 
-export default function LeftNav({ setIsBoxClicked, isboxClicked, setIsMenuClicked }) {
+// Hover Event를 양쪽의 메뉴에 어떻게 함께 줄 수 있을까?
+
+export default function LeftNav({ setIsBoxClicked, isboxClicked, setIsMenuClicked, isMenuHovered, setIsMenuHovered }) {
   const handleChangeMenu = () => {
     setIsBoxClicked((current) => !current);
   };
@@ -31,14 +33,22 @@ export default function LeftNav({ setIsBoxClicked, isboxClicked, setIsMenuClicke
           먹었습니다.이곳은 소원을 빌고 가는 공간입니다. 나무 사이에 걸려있는 소원들을 찾아보세요.
         </DescriptionContainer>
       ) : (
-        <MenuContainer>
+        <MenuContainer className="main-container">
           {kmenu.map((menu) => (
             <KMenu
               key={menu.id}
               to={menu.url}
+              className={menu.class}
               onClick={() => {
                 setIsMenuClicked((current) => !current);
               }}
+              onMouseEnter={() => {
+                setIsMenuHovered(true);
+              }}
+              onMouseLeave={() => {
+                setIsMenuHovered(false);
+              }}
+              isMenuHovered={isMenuHovered}
             >
               {menu.title}
             </KMenu>

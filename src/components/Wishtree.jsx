@@ -2,9 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
+import { Entrance, Icon, ActionContainer, ActionText, Divider, IconBall } from '../../styles/entrance';
 import styled from 'styled-components';
 
-const Container = styled.div`
+const WishTreeContainer = styled.div`
   width: 100%;
   height: 100%;
   z-index: 0;
@@ -12,7 +13,7 @@ const Container = styled.div`
 /**
  * THREE Structure
  */
-function Wishtree({ isMenuClicked, isboxClicked }) {
+function Wishtree({ isMenuClicked, isFristEntrance }) {
   const mountRef = useRef(null);
 
   useEffect(() => {
@@ -110,7 +111,22 @@ function Wishtree({ isMenuClicked, isboxClicked }) {
       }
     };
   }, []);
-  return <div ref={mountRef}></div>;
+  return (
+    <>
+      {isFristEntrance ? null : (
+        <Entrance>
+          <Divider />
+          <ActionContainer>
+            <Icon>
+              <IconBall />
+            </Icon>
+            <ActionText>scroll to zoom in-out</ActionText>
+          </ActionContainer>
+        </Entrance>
+      )}
+      <WishTreeContainer ref={mountRef}></WishTreeContainer>;
+    </>
+  );
 }
 
 export default Wishtree;
