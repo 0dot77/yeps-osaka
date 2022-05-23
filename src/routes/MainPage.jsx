@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Wishtree from '../components/Wishtree';
 import LeftNav from '../components/LeftNav';
 import RightNav from '../components/RightNav';
-import MainPageContainer from '../../styles/mainPage';
-import { HorizontalTiltShiftShader } from 'three-stdlib';
+import MainPageContainer from '../../styles/MainPage';
 
 function MainPage() {
   const [isboxClicked, setIsBoxClicked] = useState(true);
