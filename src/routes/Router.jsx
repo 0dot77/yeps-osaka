@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
-import RealTimeWishes from '../components/RealTimeWishes';
-import Interviews from '../components/Interviews';
-import WishAndTemple from '../components/WishAndTemple';
-import WebGame from '../components/WebGame';
+import RealTimeWishes from './RealTimeWishes';
+import Interviews from './Interviews';
+import WishAndTemple from './WishAndTemple';
+import WebGame from './WebGame';
 
 function Router() {
   return (

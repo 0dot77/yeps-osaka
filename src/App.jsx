@@ -1,5 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import Router from './routes/Router';
+import { RecoilRoot, atom } from 'recoil';
 const GlobalStyle = createGlobalStyle`
   html,
   body,
@@ -146,10 +147,10 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <>
+    <RecoilRoot>
       <GlobalStyle />
       <Router />
-    </>
+    </RecoilRoot>
   );
 }
 

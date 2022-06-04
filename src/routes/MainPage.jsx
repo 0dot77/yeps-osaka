@@ -16,27 +16,11 @@ function MainPage() {
   const handleFirstEntrance = () => {
     setIsFristEntrance(true);
   };
-
-  const [isRealTime, setIsRealTime] = useState(false);
-  const [isInterview, setIsInterView] = useState(false);
-  const [isTemple, setIsTemple] = useState(false);
-  const [isWebGame, setIsWebGame] = useState(false);
   return (
     <MainPageContainer onClick={handleFirstEntrance}>
-      <LeftNav
-        setIsBoxClicked={setIsBoxClicked}
-        isboxClicked={isboxClicked}
-        setIsMenuClicked={setIsMenuClicked}
-        setIsmenuhovered={setIsmenuhovered}
-        ismenuhovered={ismenuhovered}
-      />
+      <LeftNav setIsBoxClicked={setIsBoxClicked} isboxClicked={isboxClicked} setIsMenuClicked={setIsMenuClicked} />
       <Wishtree isMenuClicked={isMenuClicked} isFristEntrance={isFristEntrance} />
-      <RightNav
-        setIsBoxClicked={setIsBoxClicked}
-        isboxClicked={isboxClicked}
-        setIsmenuhovered={setIsmenuhovered}
-        ismenuhovered={ismenuhovered}
-      />
+      <RightNav setIsBoxClicked={setIsBoxClicked} isboxClicked={isboxClicked} />
     </MainPageContainer>
   );
 }

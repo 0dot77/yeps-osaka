@@ -6,18 +6,19 @@ import {
   KMenu,
   MenuContainer,
 } from '../styles/NavStyle';
-import React, { useRef } from 'react';
+import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import MainBox from '../objects/MainBox';
 import { kmenu } from '../db/menu';
+import { useRecoilState } from 'recoil';
+import { multiHover } from '../atom';
 
-// Hover Event를 양쪽의 메뉴에 어떻게 함께 줄 수 있을까?
-
-export default function LeftNav({ setIsBoxClicked, isboxClicked, setIsMenuClicked, ismenuhovered, setIsmenuhovered }) {
+export default function LeftNav({ setIsBoxClicked, isboxClicked, setIsMenuClicked }) {
+  const [isMenuHovered, setIsMenuHovered] = useRecoilState(multiHover);
   const handleChangeMenu = () => {
     setIsBoxClicked((current) => !current);
   };
-  console.log(ismenuhovered);
+
   return (
     <NavKoreanContainer>
       <KTitle>{'마을,\n소원,\n신당'}</KTitle>
@@ -44,12 +45,12 @@ export default function LeftNav({ setIsBoxClicked, isboxClicked, setIsMenuClicke
               }}
               className={menu.class}
               onMouseEnter={() => {
-                setIsmenuhovered(menu.class);
+                setIsMenuHovered(menu.class);
               }}
               onMouseLeave={() => {
-                setIsmenuhovered(null);
+                setIsMenuHovered(null);
               }}
-              ismenuhovered={ismenuhovered}
+              ismenuhovered={isMenuHovered}
             >
               {menu.title}
             </KMenu>

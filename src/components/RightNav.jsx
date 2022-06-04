@@ -10,14 +10,14 @@ import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import MainBox from '../objects/MainBox';
 import { jmenu } from '../db/menu';
+import { multiHover } from '../atom';
+import { useRecoilState } from 'recoil';
 
-export default function LeftNav({ setIsBoxClicked, isboxClicked, setIsmenuhovered, ismenuhovered }) {
+export default function LeftNav({ setIsBoxClicked, isboxClicked }) {
+  const [isMenuHovered, setIsMenuHovered] = useRecoilState(multiHover);
   const handleChangeMenu = () => {
     setIsBoxClicked((current) => !current);
   };
-
-  // 마우스 호버 되었을 때 왼쪽 오른쪽 전부 호버링 되도록 설정하기
-  const handleMouseHover = () => {};
   return (
     <NavJapContainer>
       <JTitle>{'村,\n所願,\n神堂'}</JTitle>
@@ -41,12 +41,12 @@ export default function LeftNav({ setIsBoxClicked, isboxClicked, setIsmenuhovere
               to={menu.url}
               className={menu.class}
               onMouseEnter={() => {
-                setIsmenuhovered(menu.class);
+                setIsMenuHovered(menu.class);
               }}
               onMouseLeave={() => {
-                setIsmenuhovered(null);
+                setIsMenuHovered(null);
               }}
-              ismenuhovered={ismenuhovered}
+              ismenuhovered={isMenuHovered}
             >
               {menu.title}
             </JMenu>
