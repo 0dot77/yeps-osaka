@@ -15,13 +15,17 @@ const WishTreeContainer = styled.div`
 `;
 
 // GUI
-// const gui = new GUI();
+const gui = new GUI();
 
 // WishTree positon
-
-const WISH_TREE_POSITON_X = 0.04;
+const WISH_TREE_POSITON_X = -2;
 const WISH_TREE_POSITON_Y = 0;
-const WISH_TREE_POSITON_Z = 4.93;
+const WISH_TREE_POSITON_Z = 3;
+
+// WishTree Rotation
+const WISH_TREE_ROTATION_X = 14;
+const WISH_TREE_ROTATION_Y = 3.15;
+const WISH_TREE_ROTATION_Z = 0;
 
 /**
  * THREE Structure
@@ -41,9 +45,9 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
     };
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(10, window.innerWidth / window.innerHeight, 0.01, 1000);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
-    const axis = new AxesHelper();
+    // const axis = new AxesHelper();
     // scene.add(axis);
 
     /**
@@ -57,12 +61,13 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
         const mat = new THREE.MeshBasicMaterial();
         mat.vertexColors = true;
         const mesh = new THREE.Points(geo, mat);
-        mesh.rotation.x = 30;
-        mesh.scale.multiplyScalar(0.01);
+        mesh.scale.multiplyScalar(0.5);
         mesh.position.set(WISH_TREE_POSITON_X, WISH_TREE_POSITON_Y, WISH_TREE_POSITON_Z);
+        mesh.rotation.set(WISH_TREE_ROTATION_X, WISH_TREE_ROTATION_Y, WISH_TREE_ROTATION_Z);
         scene.add(mesh);
-        // gui.add(mesh.position, 'z', -10, 10, 0.1);
-        // gui.add(mesh.position, 'x', 0.01, 0.1, 0.01);
+        // gui.add(mesh.position, 'x', -360, 360, 0.1);
+        // gui.add(mesh.position, 'y', -360, 360, 0.1);
+        // gui.add(mesh.position, 'z', -360, 360, 0.1);
       },
       (ply) => {
         // console.log((ply.loaded / ply.total) * 100 + '% loaded');
@@ -97,9 +102,9 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
     controls.enableDamping = true;
     controls.rotateSpeed = 0.1;
     controls.panSpeed = 0.5;
-    controls.target = new Vector3(0, WISH_TREE_POSITON_Y, WISH_TREE_POSITON_Z);
+    controls.target = new Vector3(0, 0, 0);
     controls.update();
-    camera.position.z = 5.5;
+    camera.position.set(0, 0, 5.5);
 
     /**
      * Rendering

@@ -13,6 +13,7 @@
 ## Packages
 
 ```
+📦
 ├── @react-three/drei@9.11.0
 ├── @react-three/fiber@8.0.16
 ├── @types/react-dom@18.0.3
