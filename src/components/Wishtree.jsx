@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { Entrance, Icon, ActionContainer, ActionText, Divider, IconBall } from '../styles/Entrance';
 import styled from 'styled-components';
 import GUI from 'lil-gui';
@@ -15,12 +14,12 @@ const WishTreeContainer = styled.div`
 `;
 
 // GUI
-const gui = new GUI();
+// const gui = new GUI();
 
 // WishTree positon
 const WISH_TREE_POSITON_X = -2;
 const WISH_TREE_POSITON_Y = 0;
-const WISH_TREE_POSITON_Z = 3;
+const WISH_TREE_POSITON_Z = 4;
 
 // WishTree Rotation
 const WISH_TREE_ROTATION_X = 14;
@@ -56,7 +55,7 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
 
     const treeLoader = new PLYLoader();
     treeLoader.load(
-      '/assets/models/tree.ply',
+      'src/assets/models/tree.ply',
       (geo) => {
         const mat = new THREE.MeshBasicMaterial();
         mat.vertexColors = true;
@@ -101,10 +100,13 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.rotateSpeed = 0.1;
-    controls.panSpeed = 0.5;
     controls.target = new Vector3(0, 0, 0);
+    controls.zoomSpeed = 0.05;
     controls.update();
-    camera.position.set(0, 0, 5.5);
+    camera.position.set(0.4, 0.4, 6.3);
+    // gui.add(camera.position, 'x', -10, 10, 0.1);
+    // gui.add(camera.position, 'y', -10, 10, 0.1);
+    // gui.add(camera.position, 'z', -10, 10, 0.1);
 
     /**
      * Rendering

@@ -8,9 +8,6 @@ function MainPage() {
   const [isboxClicked, setIsBoxClicked] = useState(true);
   const [isMenuClicked, setIsMenuClicked] = useState(false);
 
-  // 메뉴를 거울처럼 hovering 하기
-  const [ismenuhovered, setIsmenuhovered] = useState(null);
-
   // 처음 진입했을 때의 설명 (스크롤)
   const [isFristEntrance, setIsFristEntrance] = useState(false);
   const handleFirstEntrance = () => {

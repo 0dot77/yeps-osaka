@@ -52,6 +52,13 @@ _2022.06.04_
 - [x] Realtime으로 입력된 소원이 출력될 수 있는 페이지 레이아웃 구성
 - [x] Multihover state 를 Recoil을 활용해서 전역으로 사용할 수 있는 state로 변경
 
+_2022.06.11_
+
+- [ ] Firebase Realtime DB 연결 및 테스트 ⭐️
+- [ ] ThemeProvider로 공통된 스타일 전역으로 관리하기
+- [x] menu hover시에 살짝씩 스타일 뭉게지는 것 해결하기
+  - createGlobalStyle의 문제였다. 페이지가 재-랜더링이 이뤄지면서 스타일을 다시금 받아오기 때문이다. [React Styled-Components Font Reloading](https://ryublock.tistory.com/37)
+
 _SOON_
 
 - [ ] Mobile이나 Tablet에서의 ply 출력 에러 해결 필요

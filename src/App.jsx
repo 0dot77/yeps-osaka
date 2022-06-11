@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 import Router from './routes/Router';
 import { RecoilRoot, atom } from 'recoil';
+import mainfont from './assets/fonts/mainfont.ttf';
+import kmenufont from './assets/fonts/kmenufont.ttf';
+import japfont from './assets/fonts/japfont.ttf';
 const GlobalStyle = createGlobalStyle`
   html,
   body,
@@ -93,15 +96,19 @@ const GlobalStyle = createGlobalStyle`
   /*FONT*/
   @font-face {
     font-family: k-menu;
-    src: url('/assets/fonts/k-menu.ttf');
+    src: local(''),
+    url(${kmenufont}) format('truetype');
   }
   @font-face {
     font-family: j-font;
-    src: url('/assets/fonts/jap-font.ttf');
+    
+    src: local(''),
+    url(${japfont}) format('truetype');
   }
   @font-face {
     font-family: dok-lip;
-    src: url('/assets/fonts/main-font.ttf');
+    src: local(''),
+    url(${mainfont}) format('truetype');
   }
   /* HTML5 display-role reset for older browsers */
   article,
@@ -119,6 +126,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     line-height: 1;
+    box-sizing: border-box;
   }
   ol,
   ul {
