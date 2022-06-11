@@ -5,6 +5,7 @@ import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
 import { Entrance, Icon, ActionContainer, ActionText, Divider, IconBall } from '../styles/Entrance';
 import styled from 'styled-components';
 import { AxesHelper, Vector3 } from 'three';
+import treeUrl from '../assets/models/tree.ply?url';
 
 const WishTreeContainer = styled.div`
   width: 100%;
@@ -51,7 +52,7 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
 
     const treeLoader = new PLYLoader();
     treeLoader.load(
-      'src/assets/models/tree.ply',
+      treeUrl,
       (geo) => {
         const mat = new THREE.MeshBasicMaterial();
         mat.vertexColors = true;
