@@ -1,0 +1,14 @@
+@font-face {
+  font-family: k-menu;
+  src: local(''), url('./kmenufont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: j-font;
+  src: local(''), url('./japfont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: dok-lip;
+  src: local(''), url('./mainfont.ttf') format('truetype');
+}

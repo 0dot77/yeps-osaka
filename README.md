@@ -58,6 +58,9 @@ _2022.06.11_
 - [ ] ThemeProvider로 공통된 스타일 전역으로 관리하기
 - [x] menu hover시에 살짝씩 스타일 뭉게지는 것 해결하기
   - createGlobalStyle의 문제였다. 페이지가 재-랜더링이 이뤄지면서 스타일을 다시금 받아오기 때문이다. [React Styled-Components Font Reloading](https://ryublock.tistory.com/37)
+- [x] vite의 상대경로 수정하기
+  - asset을 public에 놓고 있었기 때문에 참조를 못하거나, 갖고오지 못하는 경우가 있었음
+  - ply의 경우에는 `import treeUrl from '../assets/models/tree.ply?url';` ?url을 사용해서 경로를 처리해줌
 
 _SOON_
 

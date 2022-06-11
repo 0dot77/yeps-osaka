@@ -1,9 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import Router from './routes/Router';
 import { RecoilRoot, atom } from 'recoil';
-import mainfont from './assets/fonts/mainfont.ttf';
-import kmenufont from './assets/fonts/kmenufont.ttf';
-import japfont from './assets/fonts/japfont.ttf';
+import './assets/fonts/font.module.css';
 const GlobalStyle = createGlobalStyle`
   html,
   body,
@@ -93,23 +91,7 @@ const GlobalStyle = createGlobalStyle`
     font: inherit;
     vertical-align: baseline;
   }
-  /*FONT*/
-  @font-face {
-    font-family: k-menu;
-    src: local(''),
-    url(${kmenufont}) format('truetype');
-  }
-  @font-face {
-    font-family: j-font;
-    
-    src: local(''),
-    url(${japfont}) format('truetype');
-  }
-  @font-face {
-    font-family: dok-lip;
-    src: local(''),
-    url(${mainfont}) format('truetype');
-  }
+
   /* HTML5 display-role reset for older browsers */
   article,
   aside,
