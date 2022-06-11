@@ -4,7 +4,6 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
 import { Entrance, Icon, ActionContainer, ActionText, Divider, IconBall } from '../styles/Entrance';
 import styled from 'styled-components';
-import GUI from 'lil-gui';
 import { AxesHelper, Vector3 } from 'three';
 
 const WishTreeContainer = styled.div`
@@ -12,9 +11,6 @@ const WishTreeContainer = styled.div`
   height: 100%;
   z-index: 0;
 `;
-
-// GUI
-// const gui = new GUI();
 
 // WishTree positon
 const WISH_TREE_POSITON_X = -2;
