@@ -3,19 +3,8 @@ import SectionLeftNav from '../components/section-navi/SectionLeftNav';
 import SectionRightNav from '../components/section-navi/SectionRightNav';
 import SubPageContainer from '../styles/subPageContainer';
 import { WishContainer, WishSection, Wishes } from '../styles/realTimeStyles';
-
-// import { initializeApp } from 'firebase/app';
-// import { getAnalytics } from 'firebase/analytics';
-
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyAUFDzXoptIQVBDfGQeyIPf7y-k0FP5vR4',
-//   authDomain: 'yeps-osaka.firebaseapp.com',
-//   projectId: 'yeps-osaka',
-//   storageBucket: 'yeps-osaka.appspot.com',
-//   messagingSenderId: '950685289522',
-//   appId: '1:950685289522:web:886c7d5ac70c096b4e002b',
-//   measurementId: 'G-Y3TDWWNE79',
-// };
+import { db } from '../db/firebase';
+import { uid } from 'uid';
 
 /**
  * 기능
@@ -34,7 +23,7 @@ export default function RealTimeWishes() {
         setLoading(false);
       });
   }, []);
-  // console.log(fetchData);
+
   return (
     <SubPageContainer>
       <SectionLeftNav />

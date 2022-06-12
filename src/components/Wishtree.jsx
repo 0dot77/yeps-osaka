@@ -6,6 +6,7 @@ import { Entrance, Icon, ActionContainer, ActionText, Divider, IconBall } from '
 import styled from 'styled-components';
 import { AxesHelper, Vector3 } from 'three';
 import treeUrl from '../assets/models/tree.ply?url';
+import GUI from 'lil-gui';
 
 const WishTreeContainer = styled.div`
   width: 100%;
@@ -14,14 +15,17 @@ const WishTreeContainer = styled.div`
 `;
 
 // WishTree positon
-const WISH_TREE_POSITON_X = -2;
-const WISH_TREE_POSITON_Y = 0;
-const WISH_TREE_POSITON_Z = 4;
+const WISH_TREE_POSITON_X = -8;
+const WISH_TREE_POSITON_Y = -1;
+const WISH_TREE_POSITON_Z = -3;
 
 // WishTree Rotation
 const WISH_TREE_ROTATION_X = 14;
 const WISH_TREE_ROTATION_Y = 3.15;
 const WISH_TREE_ROTATION_Z = 0;
+
+// gui
+// const gui = new GUI();
 
 /**
  * THREE Structure
@@ -50,6 +54,12 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
      * Tree Model
      */
 
+    //  gui.add( myObject, 'myProperty' )
+    //  .name( 'Custom Name' )
+    //  .onChange( value => {
+    //    console.log( value );
+    //  } );
+
     const treeLoader = new PLYLoader();
     treeLoader.load(
       treeUrl,
@@ -57,7 +67,7 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
         const mat = new THREE.MeshBasicMaterial();
         mat.vertexColors = true;
         const mesh = new THREE.Points(geo, mat);
-        mesh.scale.multiplyScalar(0.5);
+        mesh.scale.multiplyScalar(2);
         mesh.position.set(WISH_TREE_POSITON_X, WISH_TREE_POSITON_Y, WISH_TREE_POSITON_Z);
         mesh.rotation.set(WISH_TREE_ROTATION_X, WISH_TREE_ROTATION_Y, WISH_TREE_ROTATION_Z);
         scene.add(mesh);
