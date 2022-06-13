@@ -2,10 +2,11 @@ import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Edges } from '@react-three/drei';
 
-function MainBox({ isboxClicked }) {
+function MenuButton({ boxButtonClicked }) {
   const boxRef = useRef();
+
   useFrame(() => {
-    if (isboxClicked) {
+    if (boxButtonClicked) {
       boxRef.current.rotation.x += 0.01;
       boxRef.current.rotation.z += 0.01;
     } else {
@@ -17,9 +18,9 @@ function MainBox({ isboxClicked }) {
     <mesh ref={boxRef}>
       <boxGeometry attach="geometry" args={[1, 1, 1]} />
       <meshBasicMaterial attach="material" transparent opacity={0.1} />
-      <Edges color="white" />
+      <Edges scale={1.01} color="white" />
     </mesh>
   );
 }
 
-export default MainBox;
+export default MenuButton;

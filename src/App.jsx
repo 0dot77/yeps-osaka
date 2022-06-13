@@ -1,6 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Router from './routes/Router';
 import { RecoilRoot, atom } from 'recoil';
+import { defaultTheme } from './test/theme';
 import './assets/fonts/font.module.css';
 const GlobalStyle = createGlobalStyle`
   html,
@@ -138,8 +139,10 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <RecoilRoot>
-      <GlobalStyle />
-      <Router />
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyle />
+        <Router />
+      </ThemeProvider>
     </RecoilRoot>
   );
 }

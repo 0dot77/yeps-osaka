@@ -6,6 +6,9 @@ import Interviews from './Interviews';
 import WishAndTemple from './WishAndTemple';
 import WebGame from './WebGame';
 
+//test
+import TestNavContainer from '../test/TestNavContainer';
+
 function Router() {
   return (
     <BrowserRouter>
@@ -15,6 +18,8 @@ function Router() {
         <Route path="/interviews" element={<Interviews />}></Route>
         <Route path="/wish-and-temple" element={<WishAndTemple />}></Route>
         <Route path="/web-game" element={<WebGame />}></Route>
+        //test
+        <Route path="/test" element={<TestNavContainer />}></Route>
       </Routes>
     </BrowserRouter>
   );
