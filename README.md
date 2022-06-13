@@ -19,14 +19,17 @@
 ├── @types/react-dom@18.0.3
 ├── @types/react@18.0.8
 ├── @vitejs/plugin-react@1.3.1
+├── firebase@9.8.2
 ├── lil-gui@0.16.1
 ├── react-dom@18.1.0
+├── react-query@3.39.1
 ├── react-router-dom@6.3.0
 ├── react@18.1.0
 ├── recoil@0.7.3
 ├── styled-components@5.3.5
 ├── three-stdlib@2.10.1
 ├── three@0.140.2
+├── uid@2.0.0
 └── vite@2.9.6
 ```
 
@@ -64,6 +67,14 @@ _2022.06.11_
 - [x] vite의 상대경로 수정하기
   - asset을 public에 놓고 있었기 때문에 참조를 못하거나, 갖고오지 못하는 경우가 있었음
   - ply의 경우에는 `import treeUrl from '../assets/models/tree.ply?url';` ?url을 사용해서 경로를 처리해줌
+
+_2022.06.13_
+
+- [ ] wish tree 위에 쪽지 오브젝트 올리기
+- [ ] ply loading 만들기
+- [ ] wish tree 카메라 회전 방식 바꾸기
+  - y축 회전
+  - 엎어지지 않도록?
 
 _SOON_
 

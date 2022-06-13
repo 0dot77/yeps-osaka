@@ -14,11 +14,12 @@
     "lil-gui": "^0.16.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-query": "^3.39.1",
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.3",
+    "stats.js": "^0.17.0",
     "styled-components": "^5.3.5",
     "three": "^0.140.2",
-    "three-stdlib": "^2.10.1",
     "uid": "^2.0.0"
   },
   "devDependencies": {

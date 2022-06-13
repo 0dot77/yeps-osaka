@@ -1,6 +1,13 @@
 import React from 'react';
-import MainPageContainer from '../styles/MainPageContainer';
+import SectionLeftNav from '../components/section-navi/SectionLeftNav';
+import SectionRightNav from '../components/section-navi/SectionRightNav';
+import SubPageContainer from '../styles/subPageContainer';
 
 export default function Interviews() {
-  return <MainPageContainer></MainPageContainer>;
+  return (
+    <SubPageContainer>
+      <SectionLeftNav />
+      <SectionRightNav />
+    </SubPageContainer>
+  );
 }

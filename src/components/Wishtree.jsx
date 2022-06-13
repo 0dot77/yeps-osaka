@@ -7,6 +7,8 @@ import styled from 'styled-components';
 import { AxesHelper, Vector3 } from 'three';
 import treeUrl from '../assets/models/tree.ply?url';
 import GUI from 'lil-gui';
+// import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
+// import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 
 const WishTreeContainer = styled.div`
   width: 100%;
@@ -24,14 +26,12 @@ const WISH_TREE_ROTATION_X = 14;
 const WISH_TREE_ROTATION_Y = 3.15;
 const WISH_TREE_ROTATION_Z = 0;
 
-// gui
-// const gui = new GUI();
-
 /**
  * THREE Structure
  * TODO: 성능 개선의 방법?
  */
 function Wishtree({ isMenuClicked, isFristEntrance }) {
+  const cameraTarget = new Vector3(0, 0, 0);
   const mountRef = useRef(null);
 
   useEffect(() => {
@@ -39,6 +39,7 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
      * Basic Settings
      */
 
+    THREE.Cache.enabled = true;
     const sizes = {
       width: window.innerWidth,
       height: window.innerHeight,
@@ -50,32 +51,44 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
     // const axis = new AxesHelper();
     // scene.add(axis);
 
+    // const fontLoader = new FontLoader();
+
     /**
      * Tree Model
      */
-
-    //  gui.add( myObject, 'myProperty' )
-    //  .name( 'Custom Name' )
-    //  .onChange( value => {
-    //    console.log( value );
-    //  } );
 
     const treeLoader = new PLYLoader();
     treeLoader.load(
       treeUrl,
       (geo) => {
         const mat = new THREE.MeshBasicMaterial();
+        geo.computeVertexNormals();
         mat.vertexColors = true;
         const mesh = new THREE.Points(geo, mat);
         mesh.scale.multiplyScalar(2);
         mesh.position.set(WISH_TREE_POSITON_X, WISH_TREE_POSITON_Y, WISH_TREE_POSITON_Z);
         mesh.rotation.set(WISH_TREE_ROTATION_X, WISH_TREE_ROTATION_Y, WISH_TREE_ROTATION_Z);
         scene.add(mesh);
-        // gui.add(mesh.position, 'x', -360, 360, 0.1);
-        // gui.add(mesh.position, 'y', -360, 360, 0.1);
-        // gui.add(mesh.position, 'z', -360, 360, 0.1);
       },
       (ply) => {
+        // const textContent = `${(ply.loaded / ply.total) * 100} % loaded`;
+        // fontLoader.load(loadingFont, (font) => {
+        //   const textGeo = new TextGeometry(textContent, {
+        //     font,
+        //     size: 0.5,
+        //     height: 0.2,
+        //     curveSegments: 12,
+        //     bevelEnabled: true,
+        //     bevelThickness: 0.03,
+        //     bevelSize: 0.02,
+        //     bevelOffset: 0,
+        //     bevelSegments: 5,
+        //   });
+        //   textGeo.translate.center();
+        //   const textMaterial = new THREE.MeshBasicMaterial({ color: 'red' });
+        //   const text = new THREE.Mesh(textGeo, textMaterial);
+        //   scene.add(text);
+        //});
         // console.log((ply.loaded / ply.total) * 100 + '% loaded');
       },
       () => {
@@ -89,27 +102,15 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
      * 혹은 gltf 확장자를 사용해서 작업을 해야 함...
      */
 
-    // const wishLoader = new FBXLoader();
-    // wishLoader.load('/assets/models/memo.fbx', (wish) => {
-    //   scene.add(wish);
-    // });
-
-    /**
-     * Light
-     */
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    scene.add(directionalLight);
-
     /**
      * Camera
      */
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.rotateSpeed = 0.1;
-    controls.target = new Vector3(0, 0, 0);
+    // controls.target = new Vector3(0, 0, 0);
     controls.zoomSpeed = 0.05;
-    controls.update();
+    // controls.update();
     camera.position.set(0.4, 0.4, 6.3);
     // gui.add(camera.position, 'x', -10, 10, 0.1);
     // gui.add(camera.position, 'y', -10, 10, 0.1);
@@ -126,6 +127,7 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
       if (mountRef !== null) {
         requestAnimationFrame(animate);
         controls.update();
+        camera.lookAt(cameraTarget);
         renderer.render(scene, camera);
       }
     };
@@ -141,7 +143,8 @@ function Wishtree({ isMenuClicked, isFristEntrance }) {
 
       // Update Renderer
       renderer.setSize(sizes.width, sizes.height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      // renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(window.devicePixelRatio);
     });
 
     animate();
