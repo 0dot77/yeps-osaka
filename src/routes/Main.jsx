@@ -6,7 +6,7 @@ import { useLocation, Outlet } from 'react-router-dom';
 
 const Layout = styled.div`
   display: grid;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background: ${(props) => props.theme.backgroundColor};
   grid-template-columns: repeat(4, 1fr);
