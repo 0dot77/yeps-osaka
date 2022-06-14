@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import testTree from '../assets/models/pointTree';
 import FirstEntrance from './FirstEntrance';
+import { menuClicked } from '../atom';
+import pointTree from '../assets/models/pointTree';
 
-const WishTreeContainer = styled.div`
+const WishTreeContainer = styled.section`
   width: 100%;
   height: 100%;
   z-index: 0;
@@ -15,13 +16,15 @@ function Wishtree() {
   const mountRef = useRef(null);
 
   useEffect(() => {
-    testTree(mountRef);
+    pointTree(mountRef);
   }, []);
 
   return (
     <>
       {isFristEntrance ? null : <FirstEntrance setIsFirstEntrance={setIsFirstEntrance} />}
-      <WishTreeContainer ref={mountRef}></WishTreeContainer>
+      <WishTreeContainer>
+        <canvas ref={mountRef}></canvas>
+      </WishTreeContainer>
     </>
   );
 }

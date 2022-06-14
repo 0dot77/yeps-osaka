@@ -9,7 +9,6 @@ const Layout = styled.div`
   width: 100%;
   height: 100vh;
   background: ${(props) => props.theme.backgroundColor};
-  overflow: hidden;
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
   user-select: none;
@@ -20,6 +19,7 @@ const Layout = styled.div`
 
   section:nth-child(2) {
     grid-column: 2/4;
+    overflow-y: scroll;
   }
 
   section:last-child {

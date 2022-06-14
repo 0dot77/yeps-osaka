@@ -7,15 +7,17 @@ import { menuBoxClicked, multiHover, menuClicked } from '../atom';
 
 const Container = styled.section`
   width: 15rem;
+  height: 100%;
   display: grid;
   grid-template-rows: 2fr 1.5fr 2fr;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  overflow: hidden;
 `;
 
 const NavTitle = styled.h1`
-  font-size: 90px;
+  font-size: 5em;
   white-space: pre-wrap;
   text-align: center;
   line-height: 1.2;
@@ -24,7 +26,7 @@ const NavTitle = styled.h1`
 `;
 
 const Description = styled.article`
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.5;
   font-family: ${(props) => props.descriptionFont};
   color: ${(props) => props.theme.textColor};
@@ -34,7 +36,7 @@ const MenuContainer = styled.ul`
   display: flex;
   flex-direction: column;
   font-family: ${(props) => props.menuFont};
-  font-size: 34px;
+  font-size: 2rem;
   text-align: center;
 `;
 

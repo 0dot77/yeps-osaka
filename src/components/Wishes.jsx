@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const WishContainer = styled.article`
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
   display: flex;
 `;
 
@@ -34,8 +33,8 @@ export default function Wishes({ data: { UserData } }) {
   return (
     <WishContainer>
       <WishBox>
-        {Object.keys(UserData)?.map((eachWish) => (
-          <Wish>
+        {Object.keys(UserData)?.map((eachWish, index) => (
+          <Wish key={index}>
             <p>{eachWish}</p>
           </Wish>
         ))}

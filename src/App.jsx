@@ -1,7 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Router from './routes/Router';
-import { RecoilRoot, atom } from 'recoil';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { RecoilRoot } from 'recoil';
 import { defaultTheme } from './theme';
 import './assets/fonts/font.module.css';
 const GlobalStyle = createGlobalStyle`

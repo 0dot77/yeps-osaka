@@ -24,6 +24,7 @@ const WISH_TREE_ROTATION_Z = 0;
 export default function pointTree(mountRef) {
   const cameraTarget = new Vector3(0, 0, 0);
   THREE.Cache.enabled = true;
+
   const sizes = {
     width: window.innerWidth,
     height: window.innerHeight,
@@ -31,11 +32,7 @@ export default function pointTree(mountRef) {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ alpha: true });
-  // const axis = new AxesHelper();
-  // scene.add(axis);
-
-  // const fontLoader = new FontLoader();
+  const renderer = new THREE.WebGLRenderer({ alpha: true, canvas: mountRef.current });
 
   /**
    * Tree Model
@@ -72,20 +69,16 @@ export default function pointTree(mountRef) {
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.rotateSpeed = 0.1;
-  // controls.target = new Vector3(0, 0, 0);
   controls.zoomSpeed = 0.05;
-  // controls.update();
   camera.position.set(0.4, 0.4, 6.3);
-  // gui.add(camera.position, 'x', -10, 10, 0.1);
-  // gui.add(camera.position, 'y', -10, 10, 0.1);
-  // gui.add(camera.position, 'z', -10, 10, 0.1);
 
   /**
    * Rendering
    */
 
   renderer.setSize(window.innerWidth, window.innerHeight);
-  mountRef.current.appendChild(renderer.domElement);
+  // mountRef.current = renderer.domElement;
+  // mountRef.current.appendChild(renderer.domElement);
 
   const animate = function () {
     if (mountRef !== null) {
@@ -107,13 +100,12 @@ export default function pointTree(mountRef) {
 
     // Update Renderer
     renderer.setSize(sizes.width, sizes.height);
-    // renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   });
-
   animate();
-
   return () => {
+    renderer.forceContextLoss();
+    renderer.dispose();
     if (menuClicked) {
       mountRef.current.remove();
     }
