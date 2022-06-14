@@ -7,7 +7,8 @@ import { menuBoxClicked, multiHover, menuClicked } from '../atom';
 
 const Container = styled.section`
   width: 15rem;
-  height: 100%;
+  height: 100vh;
+  /* height: 100%; */
   display: grid;
   grid-template-rows: 2fr 1.5fr 2fr;
   justify-content: center;
@@ -23,6 +24,7 @@ const NavTitle = styled.h1`
   line-height: 1.2;
   font-family: ${(props) => props.titleFont};
   color: ${(props) => props.theme.textColor};
+  grid-row: 1;
 `;
 
 const Description = styled.article`
@@ -30,6 +32,7 @@ const Description = styled.article`
   line-height: 1.5;
   font-family: ${(props) => props.descriptionFont};
   color: ${(props) => props.theme.textColor};
+  grid-row: 3;
 `;
 
 const MenuContainer = styled.ul`
@@ -38,6 +41,7 @@ const MenuContainer = styled.ul`
   font-family: ${(props) => props.menuFont};
   font-size: 2rem;
   text-align: center;
+  grid-row: 3;
 `;
 
 const Menu = styled.li`
@@ -105,7 +109,7 @@ export default function Nav({
   return (
     <Container>
       <NavTitle titleFont={titleFont}>{titleContents}</NavTitle>
-      <Canvas style={{ height: '100%' }} camera={{ position: [0, 0, -2] }} onClick={handleMoveToMain}>
+      <Canvas style={{ gridRow: '2' }} camera={{ position: [0, 0, -2] }} onClick={handleMoveToMain}>
         <MenuButton boxButtonClicked={boxButtonClicked} />
       </Canvas>
       {boxButtonClicked ? (
