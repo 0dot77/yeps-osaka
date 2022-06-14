@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MenuButton from './MenuButton';
 import { useRecoilState } from 'recoil';
-import { menuBoxClicked, multiHover } from '../atom';
+import { menuBoxClicked, multiHover, menuClicked } from '../atom';
 
 const Container = styled.section`
   width: 15rem;
@@ -11,7 +11,7 @@ const Container = styled.section`
   grid-template-rows: 2fr 1.5fr 2fr;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  z-index: 1000;
 `;
 
 const NavTitle = styled.h1`
@@ -20,12 +20,14 @@ const NavTitle = styled.h1`
   text-align: center;
   line-height: 1.2;
   font-family: ${(props) => props.titleFont};
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Description = styled.article`
   font-size: 20px;
   line-height: 1.5;
   font-family: ${(props) => props.descriptionFont};
+  color: ${(props) => props.theme.textColor};
 `;
 
 const MenuContainer = styled.ul`
@@ -75,27 +77,33 @@ const Menu = styled.li`
   }
 `;
 
-export default function TestNav({
+export default function Nav({
   navTitle: { titleContents, titleFont },
   description: { descriptionFont, descriptionContents },
   menu: { menuContents, menuFont },
 }) {
   const [boxButtonClicked, isBoxButtonClicked] = useRecoilState(menuBoxClicked);
   const [isHoveredClassName, setIsHoveredClassName] = useRecoilState(multiHover);
+  const [isMenuClicked, setIsMenuClicked] = useRecoilState(menuClicked);
+  const navigate = useNavigate();
 
-  const handleMenuAppeared = () => {
+  const handleMoveToMain = () => {
     isBoxButtonClicked(!boxButtonClicked);
+    navigate(`/`);
   };
 
   const handleMenuClass = (className) => {
     setIsHoveredClassName(className);
   };
-  console.log(isHoveredClassName);
+
+  const handleMenuClicked = () => {
+    setIsMenuClicked(!isMenuClicked);
+  };
 
   return (
     <Container>
       <NavTitle titleFont={titleFont}>{titleContents}</NavTitle>
-      <Canvas style={{ height: '100%' }} camera={{ position: [0, 0, -2] }} onClick={handleMenuAppeared}>
+      <Canvas style={{ height: '100%' }} camera={{ position: [0, 0, -2] }} onClick={handleMoveToMain}>
         <MenuButton boxButtonClicked={boxButtonClicked} />
       </Canvas>
       {boxButtonClicked ? (
@@ -106,6 +114,7 @@ export default function TestNav({
               className={item.class}
               onMouseEnter={() => handleMenuClass(item.class)}
               onMouseLeave={() => setIsHoveredClassName(null)}
+              onClick={() => handleMenuClicked}
               isHoveredClassName={isHoveredClassName}
             >
               <Link to={item.url}>{item.title}</Link>

@@ -1,7 +1,8 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Router from './routes/Router';
 import { RecoilRoot, atom } from 'recoil';
-import { defaultTheme } from './test/theme';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { defaultTheme } from './theme';
 import './assets/fonts/font.module.css';
 const GlobalStyle = createGlobalStyle`
   html,
@@ -143,6 +144,7 @@ function App() {
         <GlobalStyle />
         <Router />
       </ThemeProvider>
+      {/* <ReactQueryDevtools initialIsOpen={true} /> */}
     </RecoilRoot>
   );
 }

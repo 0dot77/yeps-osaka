@@ -7,11 +7,11 @@ function MenuButton({ boxButtonClicked }) {
 
   useFrame(() => {
     if (boxButtonClicked) {
-      boxRef.current.rotation.x += 0.01;
-      boxRef.current.rotation.z += 0.01;
-    } else {
       boxRef.current.rotation.x = 0;
       boxRef.current.rotation.z = 0;
+    } else {
+      boxRef.current.rotation.x += 0.01;
+      boxRef.current.rotation.z += 0.01;
     }
   });
   return (

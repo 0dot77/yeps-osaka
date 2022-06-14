@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-
-export const Entrance = styled.div`
+const Entrance = styled.div`
   position: absolute;
   display: flex;
   justify-content: center;
@@ -13,7 +12,7 @@ export const Entrance = styled.div`
   z-index: 1000;
 `;
 
-export const ActionContainer = styled.div`
+const ActionContainer = styled.div`
   width: 300px;
   height: 300px;
   display: flex;
@@ -23,15 +22,15 @@ export const ActionContainer = styled.div`
   z-index: 2000;
 `;
 
-export const Divider = styled.hr`
+const Divider = styled.hr`
   position: absolute;
-  width: 95%;
+  width: 85%;
   bottom: 52%;
   border-top: none;
   border-bottom: 5px dotted white;
 `;
 
-export const Icon = styled.div`
+const Icon = styled.div`
   width: 50px;
   height: 90px;
   border: 3px solid #ffffff;
@@ -49,7 +48,7 @@ const IconBallAnimation = keyframes`
     }
 `;
 
-export const IconBall = styled.div`
+const IconBall = styled.div`
   width: 8px;
   animation: ${IconBallAnimation} 1s ease-in-out infinite;
   background-color: white;
@@ -57,8 +56,22 @@ export const IconBall = styled.div`
   border-radius: 12px;
 `;
 
-export const ActionText = styled.h3`
+const ActionText = styled.h3`
   color: #ffffff;
   margin-top: 12px;
   text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
 `;
+
+export default function FirstEntrance({ setIsFirstEntrance }) {
+  return (
+    <Entrance onClick={() => setIsFirstEntrance(true)}>
+      <Divider />
+      <ActionContainer>
+        <Icon>
+          <IconBall />
+        </Icon>
+        <ActionText>scroll to zoom in-out</ActionText>
+      </ActionContainer>
+    </Entrance>
+  );
+}

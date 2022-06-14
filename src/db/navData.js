@@ -41,7 +41,7 @@ export const leftNavProps = {
 
 export const rightNavProps = {
   navTitle: {
-    titleContents: `'村,\n所願,\n神堂'`,
+    titleContents: `村,\n所願,\n神堂`,
     titleFont: 'j-font',
   },
   description: {
