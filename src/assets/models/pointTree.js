@@ -32,7 +32,7 @@ export default function pointTree(mountRef) {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ alpha: true, canvas: mountRef.current });
+  const renderer = new THREE.WebGLRenderer({ alpha: true });
 
   /**
    * Tree Model
@@ -78,7 +78,8 @@ export default function pointTree(mountRef) {
 
   renderer.setSize(window.innerWidth, window.innerHeight);
   // mountRef.current = renderer.domElement;
-  // mountRef.current.appendChild(renderer.domElement);
+  // mountRef.current.prepend(renderer.domElement);
+  document.body.appendChild(renderer.domElement);
 
   const animate = function () {
     if (mountRef !== null) {
@@ -102,12 +103,14 @@ export default function pointTree(mountRef) {
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   });
+
   animate();
   return () => {
     renderer.forceContextLoss();
     renderer.dispose();
     if (menuClicked) {
-      mountRef.current.remove();
+      // mountRef.current.remove();
+      document.body.removeChild(renderer.domElement);
     }
   };
 }

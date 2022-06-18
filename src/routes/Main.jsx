@@ -1,8 +1,8 @@
 import Nav from '../components/Nav';
 import { leftNavProps, rightNavProps } from '../db/navData';
 import styled from 'styled-components';
-import Wishtree from '../components/Wishtree';
 import { useLocation, Outlet } from 'react-router-dom';
+import Test from '../components/Test';
 
 const Layout = styled.div`
   display: grid;
@@ -22,6 +22,11 @@ const Layout = styled.div`
     overflow-y: scroll;
   }
 
+  section:nth-child(3) {
+    grid-column: 2/4;
+    overflow-y: scroll;
+  }
+
   section:last-child {
     grid-column: 4;
   }
@@ -29,11 +34,11 @@ const Layout = styled.div`
 
 export default function Main() {
   const { pathname } = useLocation();
-
   return (
     <Layout>
       <Nav {...leftNavProps} />
-      {pathname === '/' ? <Wishtree /> : <Outlet />}
+      {pathname === '/' ? null : <Outlet />}
+      <Test pathname={pathname} />
       <Nav {...rightNavProps} />
     </Layout>
   );
