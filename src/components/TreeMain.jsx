@@ -20,9 +20,9 @@ export default function TreeMain({ pathname }) {
   const [isFristEntrance, setIsFirstEntrance] = useState(false);
 
   // WishTree positon
-  const WISH_TREE_POSITON_X = -8;
-  const WISH_TREE_POSITON_Y = -1;
-  const WISH_TREE_POSITON_Z = -3;
+  const WISH_TREE_POSITON_X = -4;
+  const WISH_TREE_POSITON_Y = 0;
+  const WISH_TREE_POSITON_Z = 0;
 
   // WishTree Rotation
   const WISH_TREE_ROTATION_X = 14;
@@ -32,7 +32,7 @@ export default function TreeMain({ pathname }) {
   useEffect(() => {
     if (pathname === '/') {
       var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
       var renderer = new THREE.WebGLRenderer({ alpha: true });
       const cameraTarget = new Vector3(0, 0, 0);
 
@@ -46,11 +46,10 @@ export default function TreeMain({ pathname }) {
       treeLoader.load(
         treeUrl,
         (geo) => {
-          const mat = new THREE.MeshBasicMaterial();
+          const mat = new THREE.PointsMaterial({ size: 0.01 });
           geo.computeVertexNormals();
           mat.vertexColors = true;
           const mesh = new THREE.Points(geo, mat);
-          mesh.scale.multiplyScalar(2);
           mesh.position.set(WISH_TREE_POSITON_X, WISH_TREE_POSITON_Y, WISH_TREE_POSITON_Z);
           mesh.rotation.set(WISH_TREE_ROTATION_X, WISH_TREE_ROTATION_Y, WISH_TREE_ROTATION_Z);
           scene.add(mesh);
@@ -64,7 +63,7 @@ export default function TreeMain({ pathname }) {
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
       controls.rotateSpeed = 0.1;
-      controls.zoomSpeed = 0.05;
+      controls.zoomSpeed = 1;
       camera.position.set(0.4, 0.4, 6.3);
 
       var animate = function () {
