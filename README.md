@@ -60,7 +60,7 @@ _2022.06.11_
 - [ ] Firebase Realtime DB 연결 및 테스트 ⭐️
   - [Firebase - CRUD using Realtime Database](https://youtu.be/azdwN_4IDKA)
   - [x] Firebase api key 등 민감 정보 .env로 관리하기 [Vite의 환경변수와 모드](https://vitejs-kr.github.io/guide/env-and-mode.html#env-variables)
-- [ ] ThemeProvider로 공통된 스타일 전역으로 관리하기
+- [x] ThemeProvider로 공통된 스타일 전역으로 관리하기
 - [x] menu hover시에 살짝씩 스타일 뭉게지는 것 해결하기
   - createGlobalStyle의 문제였다. 페이지가 재-랜더링이 이뤄지면서 스타일을 다시금 받아오기 때문이다. [React Styled-Components Font Reloading](https://ryublock.tistory.com/37)
   - font에 해당하는 모듈을 따로 만들어서 App.jsx에 임포트 시켜서 사용 -> hover 시 flickering 없어짐!
@@ -70,9 +70,8 @@ _2022.06.11_
 
 _2022.06.13_
 
-- [ ] wish tree 위에 쪽지 오브젝트 올리기
 - [ ] ply loading 만들기
-- [ ] wish tree 카메라 회전 방식 바꾸기
+- [x] wish tree 카메라 회전 방식 바꾸기
   - y축 회전
   - 엎어지지 않도록?
 - [x] component 분할 방법 고민하기
@@ -92,10 +91,14 @@ _2022.06.14_
 
 _2022.06.18_
 
-- [ ] useEffect를 사용할 때, 랜더링이 두 번 되어 메모리 누수가 일어나는 것 같음 (캔버스 랜더링 두 차례 됨) 해결 방법 찾기
+- [x] useEffect를 사용할 때, 랜더링이 두 번 되어 메모리 누수가 일어나는 것 같음 (캔버스 랜더링 두 차례 됨) 해결 방법 찾기
+  - 완벽한 해결은 어려웠다. useEffect의 clenup function을 다룸과 동시에 메인으로 돌아갔을 때 재 랜더링이 되어야 하는데, 컴포넌트 자체를 삭제하고 생성하는 과정에서 DOM과의 mount 문제를 해결하지 못했다.
+  - 어설픈 방법일 수 있지만, CSS를 사용해서 컴포넌트 자체를 display:none으로 바꿔 랜더링 하는 요소에서 지워줬다. canvas를 하나 더 랜더링 하는 것보다는 나은 것 같다.
 - [ ] 쪽지 오브젝트 업로드 및 인터렉티브 구현 (영상 출력되도록 만들기)
+- [x] Mobile이나 Tablet에서의 ply 출력 에러 해결 필요
+  - ply를 랜더링 하는 방식에서 mesh 자체를 point mesh로 바꿔서 해결했다. (모든 기기에서 잘 동작함)
 
 _SOON_
 
-- [ ] Mobile이나 Tablet에서의 ply 출력 에러 해결 필요
 - [ ] ply file 자체 용량이 커서 페이지 진입할 때 loading page 제작 필요
+- [ ] 각각의 페이지 제작 완료하기

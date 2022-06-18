@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import FirstEntrance from './FirstEntrance';
 import { Vector3 } from 'three';
 import * as THREE from 'three';
 import treeUrl from '../assets/models/tree.ply?url';
+import memoUrl from '../assets/models/memo.glb?url';
+import paperUrl from '../assets/models/PAPER.glb?url';
 import styled from 'styled-components';
 
 const WishTreeContainer = styled.section`
@@ -31,9 +34,10 @@ export default function TreeMain({ pathname }) {
 
   useEffect(() => {
     if (pathname === '/') {
-      var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
-      var renderer = new THREE.WebGLRenderer({ alpha: true });
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      const light = new THREE.AmbientLight('#ffffff');
       const cameraTarget = new Vector3(0, 0, 0);
 
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -41,7 +45,8 @@ export default function TreeMain({ pathname }) {
       // THREEJS Subscribed
 
       mountRef.current.appendChild(renderer.domElement);
-
+      scene.add(light);
+      // Tree
       const treeLoader = new PLYLoader();
       treeLoader.load(
         treeUrl,
@@ -60,13 +65,30 @@ export default function TreeMain({ pathname }) {
         }
       );
 
+      // Memo and Paper
+      const memoLoader = new GLTFLoader();
+      memoLoader.load(
+        memoUrl,
+        (geo) => {
+          const memo = geo.scene;
+          memo.scale.set(0.01, 0.01, 0.01);
+
+          scene.add(memo);
+          // const mat = new THREE.MeshBasicMaterial({ color: red });
+        },
+        () => {},
+        () => {
+          console.log('memo load error!');
+        }
+      );
+
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
       controls.rotateSpeed = 0.1;
       controls.zoomSpeed = 1;
       camera.position.set(0.4, 0.4, 6.3);
 
-      var animate = function () {
+      const animate = function () {
         requestAnimationFrame(animate);
         controls.update();
         camera.lookAt(cameraTarget);

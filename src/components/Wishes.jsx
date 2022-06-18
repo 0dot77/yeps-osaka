@@ -9,7 +9,11 @@ const WishContainer = styled.article`
 const WishBox = styled.ul`
   width: 50%;
   height: 100%;
+  padding: 1em;
   overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Wish = styled.li`
@@ -25,22 +29,29 @@ const Wish = styled.li`
   p {
     color: ${(props) => props.theme.textColor};
     word-break: break-all;
-    font-size: 20px;
+    font-size: 1.5rem;
+    font-family: inherit;
     padding: 30px;
   }
 `;
 
-export default function Wishes({ data: { UserData } }) {
+export default function Wishes({ data: { Japanese, Korean } }) {
   return (
     <WishContainer>
       <WishBox>
-        {Object.keys(UserData)?.map((eachWish, index) => (
+        {Object.keys(Korean)?.map((eachWish, index) => (
           <Wish key={index}>
             <p>{eachWish}</p>
           </Wish>
         ))}
       </WishBox>
-      <WishBox></WishBox>
+      <WishBox>
+        {Object.keys(Japanese)?.map((eachWish, index) => (
+          <Wish key={index}>
+            <p>{eachWish}</p>
+          </Wish>
+        ))}
+      </WishBox>
     </WishContainer>
   );
 }
