@@ -2,7 +2,7 @@ import Nav from '../components/Nav';
 import { leftNavProps, rightNavProps } from '../db/navData';
 import styled from 'styled-components';
 import { useLocation, Outlet } from 'react-router-dom';
-import WishTree from '../components/WishTree';
+import Test from '../components/Test';
 
 const Layout = styled.div`
   display: grid;
@@ -33,7 +33,7 @@ export default function Main() {
     <Layout>
       <Nav {...leftNavProps} />
       {pathname === '/' ? null : <Outlet />}
-      <WishTree pathname={pathname} />
+      <Test pathname={pathname} />
       <Nav {...rightNavProps} />
     </Layout>
   );
