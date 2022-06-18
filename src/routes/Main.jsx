@@ -19,7 +19,6 @@ const Layout = styled.div`
 
   section {
     grid-column: 2/4;
-    overflow-y: scroll;
   }
 
   nav:last-child {

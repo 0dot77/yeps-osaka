@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 const WishContainer = styled.article`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
 `;
 
 const WishBox = styled.ul`
   width: 50%;
   height: 100%;
+  overflow-y: scroll;
 `;
 
 const Wish = styled.li`
