@@ -18,9 +18,22 @@ const TreeContainer = styled.div`
   display: ${(props) => (props.pathname !== '/' ? 'none' : null)};
 `;
 
+const LoaderText = styled.div`
+  position: absolute;
+  z-index: 100;
+  color: ${(props) => props.theme.textColor};
+  font-size: 3rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 150%);
+`;
+
 export default function TreeMain({ pathname }) {
   const mountRef = useRef();
   const [isFristEntrance, setIsFirstEntrance] = useState(false);
+
+  // loader state check
+  const [modelLoaded, setModelLoaded] = useState(false);
 
   // WishTree positon
   const WISH_TREE_POSITON_X = -4;
@@ -32,7 +45,17 @@ export default function TreeMain({ pathname }) {
   const WISH_TREE_ROTATION_Y = 3.15;
   const WISH_TREE_ROTATION_Z = 0;
 
+  let LOADING_MANAGER = null;
+
+  const loadingScene = {
+    scene: new THREE.Scene(),
+    camera: new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000),
+    box: new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: 0x4444ff })),
+  };
+
   useEffect(() => {
+    // loading component 띄워주기
+    setModelLoaded(false);
     if (pathname === '/') {
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
@@ -40,14 +63,29 @@ export default function TreeMain({ pathname }) {
       const light = new THREE.AmbientLight('#ffffff');
       const cameraTarget = new Vector3(0, 0, 0);
 
+      // Loading Scene
+      loadingScene.box.position.set(0, 0, 5);
+      loadingScene.camera.lookAt(loadingScene.box.position);
+      loadingScene.scene.add(loadingScene.box);
+      LOADING_MANAGER = new THREE.LoadingManager();
+
+      LOADING_MANAGER.onProgress = (item, loaded, total) => {
+        // console.log(item, loaded, total);
+      };
+
+      LOADING_MANAGER.onLoad = () => {
+        setModelLoaded(true);
+      };
+
       renderer.setSize(window.innerWidth, window.innerHeight);
 
       // THREEJS Subscribed
 
       mountRef.current.appendChild(renderer.domElement);
       scene.add(light);
+
       // Tree
-      const treeLoader = new PLYLoader();
+      const treeLoader = new PLYLoader(LOADING_MANAGER);
       treeLoader.load(
         treeUrl,
         (geo) => {
@@ -76,7 +114,9 @@ export default function TreeMain({ pathname }) {
           scene.add(memo);
           // const mat = new THREE.MeshBasicMaterial({ color: red });
         },
-        () => {},
+        () => {
+          // console.log(loading);
+        },
         () => {
           console.log('memo load error!');
         }
@@ -115,6 +155,7 @@ export default function TreeMain({ pathname }) {
   return (
     <WishTreeContainer pathname={pathname}>
       {isFristEntrance ? null : <FirstEntrance setIsFirstEntrance={setIsFirstEntrance} />}
+      {modelLoaded ? null : <LoaderText>소원 나무를 불러오고 있어요!</LoaderText>}
       <TreeContainer ref={mountRef} pathname={pathname}></TreeContainer>
     </WishTreeContainer>
   );
