@@ -2,7 +2,7 @@ import Nav from '../components/Nav';
 import { leftNavProps, rightNavProps } from '../db/navData';
 import styled from 'styled-components';
 import { useLocation, Outlet } from 'react-router-dom';
-import Test from '../components/Test';
+import TreeMain from '../components/TreeMain';
 
 const Layout = styled.div`
   display: grid;
@@ -33,7 +33,7 @@ export default function Main() {
     <Layout>
       <Nav {...leftNavProps} />
       {pathname === '/' ? null : <Outlet />}
-      <Test pathname={pathname} />
+      <TreeMain pathname={pathname} />
       <Nav {...rightNavProps} />
     </Layout>
   );

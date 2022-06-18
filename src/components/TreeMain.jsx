@@ -15,7 +15,7 @@ const TreeContainer = styled.div`
   display: ${(props) => (props.pathname !== '/' ? 'none' : null)};
 `;
 
-export default function Test({ pathname }) {
+export default function TreeMain({ pathname }) {
   const mountRef = useRef();
   const [isFristEntrance, setIsFirstEntrance] = useState(false);
 
