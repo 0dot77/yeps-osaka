@@ -24,7 +24,7 @@ const ActionContainer = styled.div`
 
 const Divider = styled.hr`
   position: absolute;
-  width: 85%;
+  width: 80%;
   bottom: 52%;
   border-top: none;
   border-bottom: 5px dotted white;

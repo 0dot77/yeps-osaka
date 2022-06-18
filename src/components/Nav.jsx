@@ -5,7 +5,7 @@ import MenuButton from './MenuButton';
 import { useRecoilState } from 'recoil';
 import { menuBoxClicked, multiHover, menuClicked } from '../atom';
 
-const Container = styled.section`
+const Container = styled.nav`
   width: 15rem;
   height: 100vh;
   /* height: 100%; */

@@ -2,7 +2,7 @@ import Nav from '../components/Nav';
 import { leftNavProps, rightNavProps } from '../db/navData';
 import styled from 'styled-components';
 import { useLocation, Outlet } from 'react-router-dom';
-import Test from '../components/Test';
+import WishTree from '../components/WishTree';
 
 const Layout = styled.div`
   display: grid;
@@ -13,21 +13,16 @@ const Layout = styled.div`
   justify-items: center;
   user-select: none;
 
-  section:first-child {
+  nav:first-child {
     grid-column: 1;
   }
 
-  section:nth-child(2) {
+  section {
     grid-column: 2/4;
     overflow-y: scroll;
   }
 
-  section:nth-child(3) {
-    grid-column: 2/4;
-    overflow-y: scroll;
-  }
-
-  section:last-child {
+  nav:last-child {
     grid-column: 4;
   }
 `;
@@ -38,7 +33,7 @@ export default function Main() {
     <Layout>
       <Nav {...leftNavProps} />
       {pathname === '/' ? null : <Outlet />}
-      <Test pathname={pathname} />
+      <WishTree pathname={pathname} />
       <Nav {...rightNavProps} />
     </Layout>
   );

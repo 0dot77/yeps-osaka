@@ -5,7 +5,6 @@ import Interviews from './Interviews';
 import WishAndTemple from './WishAndTemple';
 import WebGame from './WebGame';
 import Main from './Main';
-import Test from '../components/Test';
 
 function Router() {
   return (
