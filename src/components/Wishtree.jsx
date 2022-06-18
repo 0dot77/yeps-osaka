@@ -18,6 +18,7 @@ const TreeContainer = styled.div`
 export default function WishTree({ pathname }) {
   const mountRef = useRef();
   const [isFristEntrance, setIsFirstEntrance] = useState(false);
+
   // WishTree positon
   const WISH_TREE_POSITON_X = -8;
   const WISH_TREE_POSITON_Y = -1;
@@ -89,17 +90,6 @@ export default function WishTree({ pathname }) {
       };
     }
   }, [pathname]);
-
-  /**
-   * section이 다른 component로 교체되기 때문에 자식 수준에 존재하는
-   * threejs component가 사라질 수밖에 없음
-   *
-   * 한 번 밖에 실행이 안된다고 했을 때,
-   * 특정 페이지에 진입했을 때 없애주고, 특정 페이지에서 다시 나왔을 때 생성될 수 있도록 하는 방법?
-   *
-   * ? 임시방편으로 display:none을 활용함
-   * * 브라우저마다 렌더링이 달라질 수 있음으로 테스팅 필요...
-   */
 
   return (
     <WishTreeContainer pathname={pathname}>
