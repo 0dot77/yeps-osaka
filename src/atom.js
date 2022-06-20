@@ -24,7 +24,15 @@ export const wishData = atom({
   default: [],
 });
 
+// 클릭된 메뉴의 클래스를 저장
 export const clickedMenu = atom({
   key: 'clickedMenu',
   default: null,
+});
+
+// 클릭된 메뉴의 height 값 저장
+// divider에 전달
+export const menuHeight = atom({
+  key: 'menuHeight',
+  default: [],
 });

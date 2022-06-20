@@ -14,7 +14,7 @@ const Container = styled.nav`
   grid-template-rows: 2fr 1.5fr 2fr;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999;
   overflow: hidden;
 `;
 
@@ -142,9 +142,10 @@ export default function Nav({
     setIsHoveredClassName(className);
   };
 
-  const handleMenuClicked = (className) => {
+  const handleMenuClicked = (className, e) => {
     setIsMenuClicked(!isMenuClicked);
     setIsClickedMenuClass(className);
+    console.log(e);
   };
 
   return (
@@ -161,8 +162,7 @@ export default function Nav({
               className={item.class}
               onMouseEnter={() => handleMenuClass(item.class)}
               onMouseLeave={() => setIsHoveredClassName(null)}
-              onClick={() => handleMenuClicked(item.class)}
-              //클릭하면 클릭된 클래스를 가진 메뉴가 빛난다.
+              onClick={(e) => handleMenuClicked(item.class, e)}
               isHoveredClassName={isHoveredClassName}
               isClickedMenuClass={isClickedMenuClass}
             >
