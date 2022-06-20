@@ -1,13 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import FirstEntrance from './FirstEntrance';
-import { Vector3 } from 'three';
+import { Texture, Vector3 } from 'three';
 import * as THREE from 'three';
 import treeUrl from '../assets/models/tree.ply?url';
 import memoUrl from '../assets/models/memo.glb?url';
-import paperUrl from '../assets/models/PAPER.glb?url';
+import spaceUrl from '../assets/models/space2.glb?url';
+import rockUrl from '../assets/models/ATrock.glb?url';
 import styled from 'styled-components';
 
 const WishTreeContainer = styled.section`
@@ -22,10 +23,15 @@ const LoaderText = styled.div`
   position: absolute;
   z-index: 100;
   color: ${(props) => props.theme.textColor};
-  font-size: 3rem;
+  font-size: 1rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, 150%);
+  /* text-align: center; */
+  p {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 `;
 
 export default function TreeMain({ pathname }) {
@@ -45,6 +51,8 @@ export default function TreeMain({ pathname }) {
   const WISH_TREE_ROTATION_Y = 3.15;
   const WISH_TREE_ROTATION_Z = 0;
 
+  // Memos
+
   let LOADING_MANAGER = null;
 
   const loadingScene = {
@@ -57,13 +65,19 @@ export default function TreeMain({ pathname }) {
     // loading component 띄워주기
     setModelLoaded(false);
     if (pathname === '/') {
+      /**
+       * Default Settings
+       */
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
       const renderer = new THREE.WebGLRenderer({ alpha: true });
-      const light = new THREE.AmbientLight('#ffffff');
+      const light = new THREE.AmbientLight('#ffffff', 0.4);
+
       const cameraTarget = new Vector3(0, 0, 0);
 
-      // Loading Scene
+      /**
+       * Loading Scene
+       */
       loadingScene.box.position.set(0, 0, 5);
       loadingScene.camera.lookAt(loadingScene.box.position);
       loadingScene.scene.add(loadingScene.box);
@@ -76,6 +90,10 @@ export default function TreeMain({ pathname }) {
       LOADING_MANAGER.onLoad = () => {
         setModelLoaded(true);
       };
+
+      /**
+       * Memo Settings
+       */
 
       renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -103,25 +121,24 @@ export default function TreeMain({ pathname }) {
         }
       );
 
-      // Memo and Paper
-      const memoLoader = new GLTFLoader();
-      memoLoader.load(
-        memoUrl,
-        (geo) => {
-          const memo = geo.scene;
-          memo.scale.set(0.01, 0.01, 0.01);
+      // memo
 
-          scene.add(memo);
-          // const mat = new THREE.MeshBasicMaterial({ color: red });
-        },
-        () => {
-          // console.log(loading);
-        },
-        () => {
-          console.log('memo load error!');
-        }
-      );
-
+      // const memoLoader = new GLTFLoader();
+      // memoLoader.load(
+      //   rockUrl,
+      //   (gltf) => {
+      //     const memo = gltf.scene;
+      //     memo.scale.set(0.001, 0.001, 0.001);
+      //     memo.position.set(0, 0, 0);
+      //     scene.add(memo);
+      //   },
+      //   () => {
+      //     // console.log(loading);
+      //   },
+      //   (err) => {
+      //     console.log(err);
+      //   }
+      // );
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
       controls.rotateSpeed = 0.1;
@@ -132,6 +149,7 @@ export default function TreeMain({ pathname }) {
         requestAnimationFrame(animate);
         controls.update();
         camera.lookAt(cameraTarget);
+        renderer.outputEncoding = THREE.sRGBEncoding;
         renderer.render(scene, camera);
       };
 
@@ -155,7 +173,12 @@ export default function TreeMain({ pathname }) {
   return (
     <WishTreeContainer pathname={pathname}>
       {isFristEntrance ? null : <FirstEntrance setIsFirstEntrance={setIsFirstEntrance} />}
-      {modelLoaded ? null : <LoaderText>소원 나무를 불러오고 있어요!</LoaderText>}
+      {modelLoaded ? null : (
+        <LoaderText>
+          <p>소원 나무를 불러오고 있어요</p>
+          <p>願いの木を呼んできています</p>
+        </LoaderText>
+      )}
       <TreeContainer ref={mountRef} pathname={pathname}></TreeContainer>
     </WishTreeContainer>
   );

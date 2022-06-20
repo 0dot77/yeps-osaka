@@ -3,7 +3,8 @@ import { Canvas } from '@react-three/fiber';
 import { Link, useNavigate } from 'react-router-dom';
 import MenuButton from './MenuButton';
 import { useRecoilState } from 'recoil';
-import { menuBoxClicked, multiHover, menuClicked } from '../atom';
+import { menuBoxClicked, multiHover, menuClicked, clickedMenu } from '../atom';
+import { useState } from 'react';
 
 const Container = styled.nav`
   width: 15rem;
@@ -54,31 +55,68 @@ const Menu = styled.li`
   &.realTime {
     a {
       text-shadow: ${(props) =>
-        props.isHoveredClassName === 'realTime' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null};
-      border-bottom: ${(props) => (props.isHoveredClassName === 'realTime' ? `1px solid #ffffff` : null)};
+        props.isHoveredClassName === 'realTime'
+          ? `0px 4px 19px rgba(255, 255, 255, 0.9)`
+          : props.isClickedMenuClass === 'realTime'
+          ? `0px 4px 19px rgba(255, 255, 255, 0.9)`
+          : null};
+      border-bottom: ${(props) =>
+        props.isHoveredClassName === 'realTime'
+          ? `1px solid #ffffff`
+          : props.isClickedMenuClass === 'realTime'
+          ? `1px solid #ffffff`
+          : null};
     }
   }
+
   &.interviews {
     a {
       text-shadow: ${(props) =>
-        props.isHoveredClassName === 'interviews' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null};
-      border-bottom: ${(props) => (props.isHoveredClassName === 'interviews' ? `1px solid #ffffff` : null)};
+        props.isHoveredClassName === 'interviews'
+          ? `0px 4px 19px rgba(255, 255, 255, 0.9)`
+          : props.isClickedMenuClass === 'interviews'
+          ? `0px 4px 19px rgba(255, 255, 255, 0.9)`
+          : null};
+      border-bottom: ${(props) =>
+        props.isHoveredClassName === 'interviews'
+          ? `1px solid #ffffff`
+          : props.isClickedMenuClass === 'interviews'
+          ? `1px solid #ffffff`
+          : null};
     }
   }
 
   &.wishAndTemple {
     a {
       text-shadow: ${(props) =>
-        props.isHoveredClassName === 'wishAndTemple' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null};
-      border-bottom: ${(props) => (props.isHoveredClassName === 'wishAndTemple' ? `1px solid #ffffff` : null)};
+        props.isHoveredClassName === 'wishAndTemple'
+          ? `0px 4px 19px rgba(255, 255, 255, 0.9)`
+          : props.isClickedMenuClass === 'wishAndTemple'
+          ? `0px 4px 19px rgba(255, 255, 255, 0.9)`
+          : null};
+      border-bottom: ${(props) =>
+        props.isHoveredClassName === 'wishAndTemple'
+          ? `1px solid #ffffff`
+          : props.isClickedMenuClass === 'wishAndTemple'
+          ? `1px solid #ffffff`
+          : null};
     }
   }
 
   &.webGame {
     a {
       text-shadow: ${(props) =>
-        props.isHoveredClassName === 'webGame' ? `0px 4px 19px rgba(255, 255, 255, 0.9)` : null};
-      border-bottom: ${(props) => (props.isHoveredClassName === 'webGame' ? `1px solid #ffffff` : null)};
+        props.isHoveredClassName === 'webGame'
+          ? `0px 4px 19px rgba(255, 255, 255, 0.9)`
+          : props.isClickedMenuClass === 'webGame'
+          ? `0px 4px 19px rgba(255, 255, 255, 0.9)`
+          : null};
+      border-bottom: ${(props) =>
+        props.isHoveredClassName === 'webGame'
+          ? `1px solid #ffffff`
+          : props.isClickedMenuClass === 'webGame'
+          ? `1px solid #ffffff`
+          : null};
     }
   }
 `;
@@ -91,19 +129,22 @@ export default function Nav({
   const [boxButtonClicked, isBoxButtonClicked] = useRecoilState(menuBoxClicked);
   const [isHoveredClassName, setIsHoveredClassName] = useRecoilState(multiHover);
   const [isMenuClicked, setIsMenuClicked] = useRecoilState(menuClicked);
+  const [isClickedMenuClass, setIsClickedMenuClass] = useRecoilState(clickedMenu);
   const navigate = useNavigate();
 
   const handleMoveToMain = () => {
     isBoxButtonClicked(!boxButtonClicked);
     navigate(`/`);
+    setIsClickedMenuClass(null);
   };
 
   const handleMenuClass = (className) => {
     setIsHoveredClassName(className);
   };
 
-  const handleMenuClicked = () => {
+  const handleMenuClicked = (className) => {
     setIsMenuClicked(!isMenuClicked);
+    setIsClickedMenuClass(className);
   };
 
   return (
@@ -120,8 +161,10 @@ export default function Nav({
               className={item.class}
               onMouseEnter={() => handleMenuClass(item.class)}
               onMouseLeave={() => setIsHoveredClassName(null)}
-              onClick={() => handleMenuClicked}
+              onClick={() => handleMenuClicked(item.class)}
+              //클릭하면 클릭된 클래스를 가진 메뉴가 빛난다.
               isHoveredClassName={isHoveredClassName}
+              isClickedMenuClass={isClickedMenuClass}
             >
               <Link to={item.url}>{item.title}</Link>
             </Menu>

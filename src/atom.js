@@ -23,3 +23,8 @@ export const wishData = atom({
   key: 'wishData',
   default: [],
 });
+
+export const clickedMenu = atom({
+  key: 'clickedMenu',
+  default: null,
+});

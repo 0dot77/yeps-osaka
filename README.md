@@ -33,7 +33,7 @@
 └── vite@2.9.6
 ```
 
-## 해결 요망
+## dev-log
 
 _2022.05.16_
 
@@ -97,8 +97,19 @@ _2022.06.18_
 - [ ] 쪽지 오브젝트 업로드 및 인터렉티브 구현 (영상 출력되도록 만들기)
 - [x] Mobile이나 Tablet에서의 ply 출력 에러 해결 필요
   - ply를 랜더링 하는 방식에서 mesh 자체를 point mesh로 바꿔서 해결했다. (모든 기기에서 잘 동작함)
+- [x] ply file 자체 용량이 커서 페이지 진입할 때 loading page 제작 필요
+  - [adding loading Scene](https://www.youtube.com/watch?v=3umV-dEYttU)
+
+_2022.06.20_
+
+- [ ] 각각의 페이지 제작 완료하기
+- [ ] 자료 아카이빙 페이지에는 소원 오브제가 fbx로 올라가게끔 만들기
+- [ ] 메인페이지가 아닌 중첩 라우팅 된 페이지로 바로 접속했을 때 404에러 발생 해결하기
+- [ ] 쪽지 오브젝트 형형색색으로 많이 만들기
+  - threejs object instancing
+  - [THREE.Object3D.add: object not an instance of THREE.Object3D](https://stackoverflow.com/questions/30147002/three-object3d-add-object-not-an-instance-of-three-object3d)
+  -
 
 _SOON_
 
-- [ ] ply file 자체 용량이 커서 페이지 진입할 때 loading page 제작 필요
-- [ ] 각각의 페이지 제작 완료하기
+- [ ] 소원이 들어가는 곳에서 한국어랑 일어가 길이가 달라지면 박스가 약간 모양이 달라지는 경우가 생김 해결 필요
