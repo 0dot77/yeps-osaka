@@ -12,7 +12,6 @@ const InterviewBox = styled.div`
   grid-row: 1/2;
   width: 100%;
   height: 100%;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -40,6 +39,7 @@ const InterviwersDescription = styled.p`
   font-size: 1.5rem;
   /* word-break: break-all; */
   line-height: 1.2;
+  text-align: center;
 `;
 
 export default function InterviewerText({ setInterviewIndex, interviewIndex }) {
