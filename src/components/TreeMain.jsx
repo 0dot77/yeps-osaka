@@ -6,10 +6,10 @@ import FirstEntrance from './FirstEntrance';
 import { Texture, Vector3 } from 'three';
 import * as THREE from 'three';
 import treeUrl from '../assets/models/tree.ply?url';
-import memoUrl from '../assets/models/memo.glb?url';
-import spaceUrl from '../assets/models/space2.glb?url';
-import rockUrl from '../assets/models/ATrock.glb?url';
+import memoUrl from '../assets/models/memoF.glb?url';
+import SeeMemo from './SeeMemo';
 import styled from 'styled-components';
+import GUI from 'lil-gui';
 
 const WishTreeContainer = styled.section`
   display: ${(props) => (props.pathname !== '/' ? 'none' : null)};
@@ -40,6 +40,7 @@ export default function TreeMain({ pathname }) {
 
   // loader state check
   const [modelLoaded, setModelLoaded] = useState(false);
+  const [memoClicked, setMemoCliced] = useState(false);
 
   // WishTree positon
   const WISH_TREE_POSITON_X = -4;
@@ -51,6 +52,7 @@ export default function TreeMain({ pathname }) {
   const WISH_TREE_ROTATION_Y = 3.15;
   const WISH_TREE_ROTATION_Z = 0;
 
+  const gui = new GUI();
   // Memos
 
   let LOADING_MANAGER = null;
@@ -61,6 +63,9 @@ export default function TreeMain({ pathname }) {
     box: new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: 0x4444ff })),
   };
 
+  // Mouse
+
+  let mouse, raycaster;
   useEffect(() => {
     // loading component 띄워주기
     setModelLoaded(false);
@@ -71,7 +76,7 @@ export default function TreeMain({ pathname }) {
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
       const renderer = new THREE.WebGLRenderer({ alpha: true });
-      const light = new THREE.AmbientLight('#ffffff', 0.4);
+      const light = new THREE.AmbientLight('#ffffff', 0.5);
 
       const cameraTarget = new Vector3(0, 0, 0);
 
@@ -102,6 +107,10 @@ export default function TreeMain({ pathname }) {
       mountRef.current.appendChild(renderer.domElement);
       scene.add(light);
 
+      // mouse interact
+      mouse = new THREE.Vector2();
+      raycaster = new THREE.Raycaster();
+
       // Tree
       const treeLoader = new PLYLoader(LOADING_MANAGER);
       treeLoader.load(
@@ -123,27 +132,33 @@ export default function TreeMain({ pathname }) {
 
       // memo
 
-      // const memoLoader = new GLTFLoader();
-      // memoLoader.load(
-      //   rockUrl,
-      //   (gltf) => {
-      //     const memo = gltf.scene;
-      //     memo.scale.set(0.001, 0.001, 0.001);
-      //     memo.position.set(0, 0, 0);
-      //     scene.add(memo);
-      //   },
-      //   () => {
-      //     // console.log(loading);
-      //   },
-      //   (err) => {
-      //     console.log(err);
-      //   }
-      // );
+      const memoLoader = new GLTFLoader(LOADING_MANAGER);
+      memoLoader.load(
+        memoUrl,
+        (gltf) => {
+          const memo = gltf.scene;
+          memo.scale.set(0.1, 0.1, 0.1);
+          memo.position.set(7, 0, 0);
+          memo.children[0].receiveShadow = true;
+          scene.add(memo);
+        },
+        () => {
+          // console.log(loading);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
       controls.rotateSpeed = 0.1;
       controls.zoomSpeed = 1;
-      camera.position.set(0.4, 0.4, 6.3);
+      camera.position.set(-0.58, 2.88, 10);
+
+      // gui.add(camera.position, 'x', -10, 10);
+      // gui.add(camera.position, 'y', -10, 10);
+      // gui.add(camera.position, 'z', -10, 10);
 
       const animate = function () {
         requestAnimationFrame(animate);
@@ -159,7 +174,26 @@ export default function TreeMain({ pathname }) {
         renderer.setSize(window.innerWidth, window.innerHeight);
       };
 
+      const onMouseClicked = (event) => {
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, camera);
+        let intersects = raycaster.intersectObjects(scene.children);
+
+        if (intersects.length) {
+          for (let i = 0; i < intersects.length; i++) {
+            if (intersects[i].object.type === 'Mesh') {
+              setMemoCliced(true);
+            } else {
+              return;
+            }
+          }
+        }
+      };
+
       window.addEventListener('resize', onWindowResize, false);
+      window.addEventListener('click', onMouseClicked);
 
       animate();
 
@@ -179,6 +213,7 @@ export default function TreeMain({ pathname }) {
           <p>願いの木を呼んできています</p>
         </LoaderText>
       )}
+      {memoClicked ? <SeeMemo setMemoCliced={setMemoCliced} /> : null}
       <TreeContainer ref={mountRef} pathname={pathname}></TreeContainer>
     </WishTreeContainer>
   );

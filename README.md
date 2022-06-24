@@ -108,8 +108,20 @@ _2022.06.20_
 - [ ] 쪽지 오브젝트 형형색색으로 많이 만들기
   - threejs object instancing
   - [THREE.Object3D.add: object not an instance of THREE.Object3D](https://stackoverflow.com/questions/30147002/three-object3d-add-object-not-an-instance-of-three-object3d)
-  -
+
+_2022.06.21_
+
+- [x] 일본어 메뉴 폰트 조금 줄이기
+  - nav로 묶어놨고, 전체적인 통일감을 위해 폰트사이즈 전체를 줄였음
+
+_2022.06.24_
+
+- [ ] 전시 때 활용할 아이패드로 보여줄 페이지 따로 빼서 라우팅 시켜놓기 (interview / realtime-wish)
+- [ ] main page : 쪽지 오브젝트 / 클릭했을 때 영상 팝업 구현
 
 _SOON_
 
 - [ ] 소원이 들어가는 곳에서 한국어랑 일어가 길이가 달라지면 박스가 약간 모양이 달라지는 경우가 생김 해결 필요
+- 최종 수정 사항
+  - [ ] Interview page : 멀티 스크롤 구현
+  - [ ] Wish Object page : 오브젝트 및 설명 업로드

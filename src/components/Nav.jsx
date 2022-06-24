@@ -14,7 +14,7 @@ const Container = styled.nav`
   grid-template-rows: 2fr 1.5fr 2fr;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 100;
   overflow: hidden;
 `;
 
@@ -40,7 +40,7 @@ const MenuContainer = styled.ul`
   display: flex;
   flex-direction: column;
   font-family: ${(props) => props.menuFont};
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   grid-row: 3;
 `;
@@ -145,7 +145,6 @@ export default function Nav({
   const handleMenuClicked = (className, e) => {
     setIsMenuClicked(!isMenuClicked);
     setIsClickedMenuClass(className);
-    console.log(e);
   };
 
   return (

@@ -17,14 +17,6 @@ const KorSection = styled.article`
   border-left: 3px dotted #ffffff;
 `;
 
-const ObjectContainer = styled.article`
-  width: 100%;
-  height: 100%;
-  grid-column: 2/3;
-  border-left: 3px dotted #ffffff;
-  border-right: 3px dotted #ffffff;
-`;
-
 const JapSection = styled.article`
   width: 100%;
   height: 100%;
@@ -39,7 +31,7 @@ const Caption = styled.article`
   border-left: 3px dotted #ffffff;
   border-right: 3px dotted #ffffff;
   text-align: center;
-  font-size: 2rem;
+  font-size: ${(props) => props.theme.captionSize};
   color: ${(props) => props.theme.textColor};
   text-shadow: ${(props) => props.theme.textShadow};
   z-index: 100;
@@ -50,7 +42,7 @@ const SelectContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  margin-top: 84vh;
+  margin-top: 83vh;
 `;
 
 export default function WishAndTemple() {
