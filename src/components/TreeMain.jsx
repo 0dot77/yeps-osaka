@@ -137,7 +137,7 @@ export default function TreeMain({ pathname }) {
         memoUrl,
         (gltf) => {
           const memo = gltf.scene;
-          memo.scale.set(0.1, 0.1, 0.1);
+          memo.scale.set(2, 2, 2);
           memo.position.set(7, 0, 0);
           memo.children[0].receiveShadow = true;
           scene.add(memo);
