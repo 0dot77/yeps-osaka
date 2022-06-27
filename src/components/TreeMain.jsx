@@ -9,7 +9,6 @@ import treeUrl from '../assets/models/tree.ply?url';
 import memoUrl from '../assets/models/memoF.glb?url';
 import SeeMemo from './SeeMemo';
 import styled from 'styled-components';
-import GUI from 'lil-gui';
 
 const WishTreeContainer = styled.section`
   display: ${(props) => (props.pathname !== '/' ? 'none' : null)};
@@ -52,7 +51,6 @@ export default function TreeMain({ pathname }) {
   const WISH_TREE_ROTATION_Y = 3.15;
   const WISH_TREE_ROTATION_Z = 0;
 
-  const gui = new GUI();
   // Memos
 
   let LOADING_MANAGER = null;
@@ -155,10 +153,6 @@ export default function TreeMain({ pathname }) {
       controls.rotateSpeed = 0.1;
       controls.zoomSpeed = 1;
       camera.position.set(-0.58, 2.88, 10);
-
-      // gui.add(camera.position, 'x', -10, 10);
-      // gui.add(camera.position, 'y', -10, 10);
-      // gui.add(camera.position, 'z', -10, 10);
 
       const animate = function () {
         requestAnimationFrame(animate);

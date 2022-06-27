@@ -123,12 +123,13 @@ _2022.06.24_
 
 _2022.06.27_
 
-- [ ] Wish Object page : 오브젝트 및 설명 업로드
+- [x] Wish Object page : 오브젝트 및 설명 업로드
   - state를 변경했을 때 react-three-fiber 캔버스가 로딩되지 않는 문제가 발생했음
   - [Adding, removing, re-adding <primitive object={scene} /> causes no rendering](https://github.com/pmndrs/react-three-fiber/issues/281) primitive 적용 윗단에 그룹핑을 해주면 해결이 가능했다!
+- [ ] Netlify Redirection 문제
+  - [Netlify and React Router](https://sschannak.medium.com/netlify-and-react-router-1537aebe6256)
+  - public/\_redirect 파일을 만들어서 해결했다.
 
 _SOON_
 
-- [ ] 소원이 들어가는 곳에서 한국어랑 일어가 길이가 달라지면 박스가 약간 모양이 달라지는 경우가 생김 해결 필요
-- 최종 수정 사항
-  - [ ] Interview page : 멀티 스크롤 구현
+- [ ] Interview page : 멀티 스크롤 구현
