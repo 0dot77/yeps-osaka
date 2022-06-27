@@ -121,9 +121,14 @@ _2022.06.24_
 - [x] main page : 쪽지 오브젝트 / 클릭했을 때 영상 팝업 구현
   - 구현은 마무리 했는데, 문제 발생 : threejs에서 raycasting을 구현하면 포인트 클라우드가 다 잡혀버려서 최적화도 어렵고, 클릭 할 때마다 버벅임이 발생한다. 지금 상황에서는 마땅한 해결법이 떠오르지 않아서 우선 대안으로 쪽지를 나무 주변으로 퍼뜨려놓고, 클릭이 될 수 있도록 구현하는 게 가장 이상적인 것 같음.
 
+_2022.06.27_
+
+- [ ] Wish Object page : 오브젝트 및 설명 업로드
+  - state를 변경했을 때 react-three-fiber 캔버스가 로딩되지 않는 문제가 발생했음
+  - [Adding, removing, re-adding <primitive object={scene} /> causes no rendering](https://github.com/pmndrs/react-three-fiber/issues/281) primitive 적용 윗단에 그룹핑을 해주면 해결이 가능했다!
+
 _SOON_
 
 - [ ] 소원이 들어가는 곳에서 한국어랑 일어가 길이가 달라지면 박스가 약간 모양이 달라지는 경우가 생김 해결 필요
 - 최종 수정 사항
   - [ ] Interview page : 멀티 스크롤 구현
-  - [ ] Wish Object page : 오브젝트 및 설명 업로드

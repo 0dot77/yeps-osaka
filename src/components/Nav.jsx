@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import MenuButton from './MenuButton';
 import { useRecoilState } from 'recoil';
 import { menuBoxClicked, multiHover, menuClicked, clickedMenu } from '../atom';
-import { useState } from 'react';
 
 const Container = styled.nav`
   width: 15rem;
@@ -21,6 +20,7 @@ const Container = styled.nav`
 const NavTitle = styled.h1`
   font-size: 5em;
   white-space: pre-wrap;
+  word-break: break-all;
   text-align: center;
   line-height: 1.2;
   font-family: ${(props) => props.titleFont};
@@ -34,6 +34,7 @@ const Description = styled.article`
   font-family: ${(props) => props.descriptionFont};
   color: ${(props) => props.theme.textColor};
   grid-row: 3;
+  word-break: break-all;
 `;
 
 const MenuContainer = styled.ul`

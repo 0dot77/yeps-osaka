@@ -35,7 +35,7 @@ const Wish = styled.li`
   }
 `;
 
-export default function Wishes({ data: { Japanese, Korean } }) {
+export default function Wishes({ data: { Japanese = {}, Korean = {} } }) {
   return (
     <WishContainer>
       <WishBox>

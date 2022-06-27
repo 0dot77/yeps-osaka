@@ -210,7 +210,7 @@ export default function TreeMain({ pathname }) {
       {modelLoaded ? null : (
         <LoaderText>
           <p>소원 나무를 불러오고 있어요</p>
-          <p>願いの木を呼んできています</p>
+          <p>願いの木を呼んでいます。</p>
         </LoaderText>
       )}
       {memoClicked ? <SeeMemo setMemoCliced={setMemoCliced} /> : null}

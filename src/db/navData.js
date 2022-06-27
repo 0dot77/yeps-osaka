@@ -41,18 +41,18 @@ export const leftNavProps = {
 
 export const rightNavProps = {
   navTitle: {
-    titleContents: `村,\n所願,\n神堂`,
+    titleContents: `村、\n願い、\n神堂`,
     titleFont: 'j-font',
   },
   description: {
     descriptionContents:
-      'ここは大韓民国ソウル特別市城北区石棺洞340-17(花郎32街道17)、石棺洞の陶唐前の木です。昔、村の人たちはその度にこの都堂に集まって祭祀を行い、村のおばあさん神様に一年の安寧と豊年を祈りながら食べ物を分けて食べました。ここは願い事をする空間です。木の間にかかっている願いを探してみてください。',
+      'ここは韓国ソウル特別市城北区石串洞340-17(17,Hwarang-ro 32ga-gil)、石棺洞の堂の前にある木です。 昔の村人たちは一年ごとにこの都堂に集まって祭祀を挙げ、村の神様に今年の安寧と豊年を祈りながら、皆んなで食事をしました。ここは願いを祈る空間です。 木にかかっている願いを探してみてください。',
     descriptionFont: 'j-menu',
   },
   menu: {
     menuContents: [
       {
-        title: 'リアルタイム願い',
+        title: 'リアルタイムの願い',
         id: 1,
         url: '/realtime-wishes',
         class: 'realTime',
@@ -64,13 +64,13 @@ export const rightNavProps = {
         class: 'interviews',
       },
       {
-        title: '願い、 新党',
+        title: '願い、神堂',
         id: 3,
         url: '/wish-and-temple',
         class: 'wishAndTemple',
       },
       {
-        title: '新党入り',
+        title: '神堂に入る',
         id: 4,
         url: '/web-game',
         class: 'webGame',

@@ -45,25 +45,22 @@ const JapSection = styled.article`
 
 export default function Interviews() {
   const [interviewIndex, setInterviewIndex] = useState(0);
-  const [scrollY, setScrollY] = useState(0);
-  const mount = useRef([]);
+  const scrollMount = useRef(null);
 
-  /** 화살표 기능
-   * 화살표를 누르면 내용이 바뀜
-   */
+  function handleScroll() {
+    console.log(window.scrollY);
+  }
 
-  /**
-   * synchronize scroll
-   * 커스텀 훅을 만들어서 사용해야할까???
-   */
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll); //clean up
+    };
+  }, []);
 
   return (
     <Container>
-      <KorSection
-        ref={(ref) => {
-          mount[0] = ref;
-        }}
-      >
+      <KorSection ref={scrollMount}>
         {/* //인덱스 전달 */}
         <InterviewText interviewIndex={interviewIndex} />
       </KorSection>
