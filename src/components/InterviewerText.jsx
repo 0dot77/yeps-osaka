@@ -8,27 +8,67 @@ const Container = styled.div`
   grid-template-rows: 82vh 18vh;
 `;
 
-const InterviewBox = styled.div`
+const InterviewBoxKor = styled.div`
   grid-row: 1/2;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  padding-left: 0.3rem;
+`;
+
+const InterviewBoxJap = styled.div`
+  grid-row: 2;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 30% 70%;
+  /* border: 1px solid red; */
+  padding-left: 0.3rem;
+`;
+
+const InterviewerJap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid green; */
+  font-size: 1.5rem;
+  color: #ffffff80;
+  grid-row: 1/2;
+  width: 100%;
+`;
+
+const InterviewerJapDescription = styled.div`
+  /* border: 1px solid blue; */
+  grid-row: 2;
+  font-size: 2.5rem;
+  line-height: 2;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  text-align: center;
+  word-break: break-all;
+  display: flex;
+  justify-content: center;
+`;
+
+const DescriptionTextBox = styled.div`
+  width: 90%;
 `;
 
 const Interviwers = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  padding: 0 10px 0 10px;
   align-items: flex-end;
   height: 5%;
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  line-height: 1.2;
   p {
     width: 70%;
     text-align: center;
-    /* border: 1px solid red; */
-    word-break: break-all;
     text-shadow: ${(props) => props.theme.textShadow};
   }
 `;
@@ -36,9 +76,9 @@ const Interviwers = styled.div`
 const InterviwersDescription = styled.p`
   margin-bottom: 2rem;
   padding: 1rem;
-  font-size: 1.5rem;
-  /* word-break: break-all; */
-  line-height: 1.2;
+  font-size: 2.5rem;
+  word-break: break-all;
+  line-height: 2;
   text-align: center;
 `;
 
@@ -55,7 +95,6 @@ export default function InterviewerText({ setInterviewIndex, interviewIndex }) {
   function handleClickIncrease() {
     setInterviewIndex((current) => {
       if (current !== Object.keys(interviewsData).length - 1) {
-        // console.log(Object.keys(interviewsData).length);
         current++;
       }
       return current;
@@ -63,7 +102,7 @@ export default function InterviewerText({ setInterviewIndex, interviewIndex }) {
   }
   return (
     <Container>
-      <InterviewBox>
+      <InterviewBoxKor>
         <InterviwersDescription>{interviewsData[`${interviewIndex}`].main.korSubTitle}</InterviwersDescription>
         <Interviwers>
           <svg
@@ -94,7 +133,13 @@ export default function InterviewerText({ setInterviewIndex, interviewIndex }) {
             />
           </svg>
         </Interviwers>
-      </InterviewBox>
+      </InterviewBoxKor>
+      <InterviewBoxJap>
+        <InterviewerJap>{interviewsData[`${interviewIndex}`].main.japTitle}</InterviewerJap>
+        <InterviewerJapDescription>
+          <DescriptionTextBox>{interviewsData[`${interviewIndex}`].main.japSubTitle}</DescriptionTextBox>
+        </InterviewerJapDescription>
+      </InterviewBoxJap>
     </Container>
   );
 }

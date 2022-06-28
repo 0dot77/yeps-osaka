@@ -62,7 +62,6 @@ function App() {
         <GlobalStyle />
         <Router />
       </ThemeProvider>
-      {/* <ReactQueryDevtools initialIsOpen={true} /> */}
     </RecoilRoot>
   );
 }

@@ -9,12 +9,6 @@ const Layout = styled.div`
   user-select: none;
 `;
 
-const Divider = styled.hr`
-  position: absolute;
-  border: 1px dotted ${(props) => props.theme.textColor};
-  width: 60%;
-`;
-
 export default function Exhibition() {
   return (
     <Layout>

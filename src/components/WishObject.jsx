@@ -14,7 +14,7 @@ const canvasStyle = {
 export default function WishObejct({ objectIndex }) {
   return (
     <Canvas style={{ ...canvasStyle }} camera={{ position: [0, 0, 5] }}>
-      <ambientLight intensity={0.5} />
+      <directionalLight intensity={1} position={[0, 20, 10]} lookAt={[0, -2, 0]} />
       <Suspense fallback={null}>
         <Models index={objectIndex} />
       </Suspense>

@@ -6,10 +6,8 @@ import modelData from '../db/modelData';
 const Container = styled.section`
   width: 100%;
   height: 100%;
-  /* border: 1px solid green; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* grid-template-rows: repeat(3, 1fr); */
 `;
 
 const KorSection = styled.article`
@@ -17,6 +15,16 @@ const KorSection = styled.article`
   height: 100%;
   grid-column: 1/2;
   border-left: 3px dotted #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TextBox = styled.div`
+  width: 90%;
+  font-size: 1.25rem;
+  color: ${(props) => props.theme.textColor};
+  line-height: 2;
 `;
 
 const JapSection = styled.article`
@@ -24,6 +32,9 @@ const JapSection = styled.article`
   height: 100%;
   grid-column: 3/4;
   border-right: 3px dotted #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Caption = styled.article`
@@ -41,14 +52,14 @@ const Caption = styled.article`
 `;
 
 const SelectContainer = styled.div`
-  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 10px 0 10px;
+  font-size: 1.5rem;
   margin-top: 83vh;
 `;
 
 const SelectTextContainer = styled.div`
-  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -65,7 +76,7 @@ export default function WishAndTemple() {
     setObjectIndex((current) => {
       current++;
       if (current > 3) {
-        current = 0;
+        current = 3;
       }
       return current;
     });
@@ -75,7 +86,7 @@ export default function WishAndTemple() {
     setObjectIndex((current) => {
       current--;
       if (current < 0) {
-        current = 3;
+        current = 0;
       }
       return current;
     });
@@ -83,7 +94,9 @@ export default function WishAndTemple() {
 
   return (
     <Container>
-      <KorSection />
+      <KorSection>
+        <TextBox>{modelData[`${objectIndex}`].korDescription}</TextBox>
+      </KorSection>
       <WishObejct objectIndex={objectIndex} />
       <Caption>
         <SelectContainer>
@@ -119,7 +132,9 @@ export default function WishAndTemple() {
           </svg>
         </SelectContainer>
       </Caption>
-      <JapSection />
+      <JapSection>
+        <TextBox>{modelData[`${objectIndex}`].japDescription}</TextBox>
+      </JapSection>
     </Container>
   );
 }

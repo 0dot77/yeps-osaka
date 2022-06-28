@@ -11,7 +11,12 @@ export function Models({ index }) {
   const myModel = useRef();
   return (
     <group dispose={null}>
-      <primitive ref={myModel} object={gltf.scene} scale={modelData[`${index}`].scale} position={[0, -2, 0]} />
+      <primitive
+        ref={myModel}
+        object={gltf.scene}
+        scale={modelData[`${index}`].scale}
+        position={modelData[`${index}`].pos ? modelData[`${index}`].pos : [0, -2, 0]}
+      />
     </group>
   );
 }

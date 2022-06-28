@@ -126,10 +126,17 @@ _2022.06.27_
 - [x] Wish Object page : 오브젝트 및 설명 업로드
   - state를 변경했을 때 react-three-fiber 캔버스가 로딩되지 않는 문제가 발생했음
   - [Adding, removing, re-adding <primitive object={scene} /> causes no rendering](https://github.com/pmndrs/react-three-fiber/issues/281) primitive 적용 윗단에 그룹핑을 해주면 해결이 가능했다!
-- [ ] Netlify Redirection 문제
+- [x] Netlify Redirection 문제
   - [Netlify and React Router](https://sschannak.medium.com/netlify-and-react-router-1537aebe6256)
   - public/\_redirect 파일을 만들어서 해결했다.
-
-_SOON_
-
+- [x] 소원 나무와 쪽지가 겹쳐서 클릭되는 문제 해결해보기
+  - [Threejs Raycaster.params](https://threejs.org/docs/#api/en/core/Raycaster.params)
+- [ ] 나머지 페이지 완성하기
+  - [x] firebase로 fetch 할 때 loading 깔끔하게 만들어보기
+  - [ ] 소원, 신당 텍스트 수정하기
+  - [ ] 메인 소원 추가하기
+    - [ ] 각각의 쪽지가 둥둥 떠다니는 느낌을 구현하기
+  - [ ] 유니티 Webgl 올리기
 - [ ] Interview page : 멀티 스크롤 구현
+
+_2022.06.28_

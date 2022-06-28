@@ -1,9 +1,9 @@
-import { memo, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import FirstEntrance from './FirstEntrance';
-import { Texture, Vector3 } from 'three';
+import { Vector3 } from 'three';
 import * as THREE from 'three';
 import treeUrl from '../assets/models/tree.ply?url';
 import memoUrl from '../assets/models/memoF.glb?url';
@@ -99,7 +99,6 @@ export default function TreeMain({ pathname }) {
        */
 
       renderer.setSize(window.innerWidth, window.innerHeight);
-
       // THREEJS Subscribed
 
       mountRef.current.appendChild(renderer.domElement);
@@ -108,6 +107,8 @@ export default function TreeMain({ pathname }) {
       // mouse interact
       mouse = new THREE.Vector2();
       raycaster = new THREE.Raycaster();
+      // raycast 포인트 중복 클릭되지 않도록 threshold 조절
+      raycaster.params.Points.threshold = 0.001;
 
       // Tree
       const treeLoader = new PLYLoader(LOADING_MANAGER);
@@ -136,8 +137,7 @@ export default function TreeMain({ pathname }) {
         (gltf) => {
           const memo = gltf.scene;
           memo.scale.set(2, 2, 2);
-          memo.position.set(7, 0, 0);
-          memo.children[0].receiveShadow = true;
+          memo.position.set(0, 0, 0);
           scene.add(memo);
         },
         () => {
@@ -169,20 +169,33 @@ export default function TreeMain({ pathname }) {
       };
 
       const onMouseClicked = (event) => {
+        event.preventDefault();
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
         raycaster.setFromCamera(mouse, camera);
         let intersects = raycaster.intersectObjects(scene.children);
-
-        if (intersects.length) {
-          for (let i = 0; i < intersects.length; i++) {
-            if (intersects[i].object.type === 'Mesh') {
-              setMemoCliced(true);
-            } else {
-              return;
-            }
-          }
+        if (intersects.length && intersects[0].object.type === 'Mesh') {
+          setMemoCliced(true);
+          const moveCamPos = [
+            intersects[0].object.position.x,
+            intersects[0].object.position.y,
+            intersects[0].object.position.z - 3,
+          ];
+          camera.position.set(...moveCamPos);
+          // 동작함
+          // for (let i = 0; i < intersects.length; i++) {
+          //   if (intersects[i].object.type === 'Mesh') {
+          //     setMemoCliced(true);
+          //     camera.position.set(
+          //       intersects[i].object.position.x,
+          //       intersects[i].object.position.y,
+          //       intersects[i].object.position.z - 3
+          //     );
+          //   } else {
+          //     return;
+          //   }
+          // }
         }
       };
 
@@ -190,7 +203,6 @@ export default function TreeMain({ pathname }) {
       window.addEventListener('click', onMouseClicked);
 
       animate();
-
       //! useEffect clear function 골치아픔...
       return () => {
         mountRef.current.removeChild(renderer.domElement);
