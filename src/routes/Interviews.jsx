@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import InterviewText from '../components/InterviewText';
 import InterviewerText from '../components/InterviewerText';
 
@@ -43,24 +43,12 @@ const JapSection = styled.ul`
 
 export default function Interviews() {
   const [interviewIndex, setInterviewIndex] = useState(0);
-  const scrollMount = useRef(null);
   const selectedkor = 0;
   const selectedjap = 1;
 
-  function handleScroll() {
-    // console.log(window.scrollY);
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll); //clean up
-    };
-  }, []);
-
   return (
     <Container>
-      <KorSection ref={scrollMount}>
+      <KorSection>
         {/* //인덱스 전달 */}
         <InterviewText interviewIndex={interviewIndex} selectedLanguage={selectedkor} />
       </KorSection>

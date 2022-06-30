@@ -19,15 +19,36 @@ const KorSection = styled.article`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10000;
 `;
 
-const TextBox = styled.div`
+const KorTextBox = styled.div`
+  display: flex;
   margin-top: 1rem;
   font-size: 1.25rem;
   color: ${(props) => props.theme.textColor};
   line-height: 2;
   width: 90%;
+  height: 100%;
   overflow: scroll;
+  align-items: center;
+  p {
+    height: 100%;
+  }
+`;
+
+const JapTextBox = styled.div`
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  color: ${(props) => props.theme.textColor};
+  line-height: 2;
+  width: 90%;
+  height: 100%;
+  overflow: scroll;
+  margin-left: 10px;
+  p {
+    height: 100%;
+  }
 `;
 
 const JapSection = styled.article`
@@ -39,11 +60,12 @@ const JapSection = styled.article`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10000;
 `;
 
 const Caption = styled.article`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   grid-column: 2/3;
   border-left: 3px dotted #ffffff;
   border-right: 3px dotted #ffffff;
@@ -99,7 +121,9 @@ export default function WishAndTemple() {
   return (
     <Container>
       <KorSection>
-        <TextBox>{modelData[`${objectIndex}`].korDescription}</TextBox>
+        <KorTextBox>
+          <p>{modelData[`${objectIndex}`].korDescription}</p>
+        </KorTextBox>
       </KorSection>
       <WishObejct objectIndex={objectIndex} />
       <Caption>
@@ -137,7 +161,9 @@ export default function WishAndTemple() {
         </SelectContainer>
       </Caption>
       <JapSection>
-        <TextBox>{modelData[`${objectIndex}`].japDescription}</TextBox>
+        <JapTextBox>
+          <p>{modelData[`${objectIndex}`].japDescription}</p>
+        </JapTextBox>
       </JapSection>
     </Container>
   );
