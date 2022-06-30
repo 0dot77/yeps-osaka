@@ -11,8 +11,9 @@ const Container = styled.section`
 `;
 
 const KorSection = styled.article`
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   grid-column: 1/2;
   border-left: 3px dotted #ffffff;
   display: flex;
@@ -21,15 +22,18 @@ const KorSection = styled.article`
 `;
 
 const TextBox = styled.div`
-  width: 90%;
+  margin-top: 1rem;
   font-size: 1.25rem;
   color: ${(props) => props.theme.textColor};
   line-height: 2;
+  width: 90%;
+  overflow: scroll;
 `;
 
 const JapSection = styled.article`
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   grid-column: 3/4;
   border-right: 3px dotted #ffffff;
   display: flex;

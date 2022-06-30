@@ -19,8 +19,7 @@
     "recoil": "^0.7.3",
     "stats.js": "^0.17.0",
     "styled-components": "^5.3.5",
-    "three": "^0.140.2",
-    "uid": "^2.0.0"
+    "three": "^0.140.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

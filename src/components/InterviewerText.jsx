@@ -32,7 +32,6 @@ const InterviewerJap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid green; */
   font-size: 1.5rem;
   color: #ffffff80;
   grid-row: 1/2;
@@ -40,9 +39,8 @@ const InterviewerJap = styled.div`
 `;
 
 const InterviewerJapDescription = styled.div`
-  /* border: 1px solid blue; */
   grid-row: 2;
-  font-size: 2.5rem;
+  font-size: 2rem;
   line-height: 2;
   width: 100%;
   height: 100%;
@@ -74,9 +72,9 @@ const Interviwers = styled.div`
 `;
 
 const InterviwersDescription = styled.p`
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   padding: 1rem;
-  font-size: 2.5rem;
+  font-size: 2rem;
   word-break: break-all;
   line-height: 2;
   text-align: center;
@@ -104,6 +102,9 @@ export default function InterviewerText({ setInterviewIndex, interviewIndex }) {
     <Container>
       <InterviewBoxKor>
         <InterviwersDescription>{interviewsData[`${interviewIndex}`].main.korSubTitle}</InterviwersDescription>
+        <InterviewerJapDescription>
+          <DescriptionTextBox>{interviewsData[`${interviewIndex}`].main.japSubTitle}</DescriptionTextBox>
+        </InterviewerJapDescription>
         <Interviwers>
           <svg
             onClick={handleClickDecrease}
@@ -136,9 +137,6 @@ export default function InterviewerText({ setInterviewIndex, interviewIndex }) {
       </InterviewBoxKor>
       <InterviewBoxJap>
         <InterviewerJap>{interviewsData[`${interviewIndex}`].main.japTitle}</InterviewerJap>
-        <InterviewerJapDescription>
-          <DescriptionTextBox>{interviewsData[`${interviewIndex}`].main.japSubTitle}</DescriptionTextBox>
-        </InterviewerJapDescription>
       </InterviewBoxJap>
     </Container>
   );

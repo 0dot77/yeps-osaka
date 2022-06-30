@@ -8,7 +8,6 @@ import { menuBoxClicked, multiHover, menuClicked, clickedMenu } from '../atom';
 const Container = styled.nav`
   width: 15rem;
   height: 100vh;
-  /* height: 100%; */
   display: grid;
   grid-template-rows: 2fr 1.5fr 2fr;
   justify-content: center;

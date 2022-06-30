@@ -33,6 +33,9 @@ const LoaderText = styled.div`
   }
 `;
 
+// 랜덤 함수 만들기
+const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
 export default function TreeMain({ pathname }) {
   const mountRef = useRef();
   const [isFristEntrance, setIsFirstEntrance] = useState(false);
@@ -64,8 +67,10 @@ export default function TreeMain({ pathname }) {
   // Mouse
 
   let mouse, raycaster;
+  const memos = [];
   useEffect(() => {
     // loading component 띄워주기
+
     setModelLoaded(false);
     if (pathname === '/') {
       /**
@@ -75,7 +80,6 @@ export default function TreeMain({ pathname }) {
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
       const renderer = new THREE.WebGLRenderer({ alpha: true });
       const light = new THREE.AmbientLight('#ffffff', 0.5);
-
       const cameraTarget = new Vector3(0, 0, 0);
 
       /**
@@ -93,10 +97,6 @@ export default function TreeMain({ pathname }) {
       LOADING_MANAGER.onLoad = () => {
         setModelLoaded(true);
       };
-
-      /**
-       * Memo Settings
-       */
 
       renderer.setSize(window.innerWidth, window.innerHeight);
       // THREEJS Subscribed
@@ -132,27 +132,27 @@ export default function TreeMain({ pathname }) {
       // memo
 
       const memoLoader = new GLTFLoader(LOADING_MANAGER);
-      memoLoader.load(
-        memoUrl,
-        (gltf) => {
-          const memo = gltf.scene;
-          memo.scale.set(2, 2, 2);
-          memo.position.set(0, 0, 0);
-          scene.add(memo);
-        },
-        () => {
-          // console.log(loading);
-        },
-        (err) => {
-          console.log(err);
+      memoLoader.load(memoUrl, (gltf) => {
+        // origin memo
+        const memo = gltf.scene;
+
+        for (let i = 0; i < 10; i++) {
+          memos.push(memo.clone());
         }
-      );
+
+        for (const memoClone of memos) {
+          memoClone.position.set(random(-3, 3), random(0.1, 3), random(-3, 3));
+          memoClone.scale.set(1, 1, 1);
+          memoClone.rotation.set(0, Math.random() * 360, 0);
+          scene.add(memoClone);
+        }
+      });
 
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
       controls.rotateSpeed = 0.1;
       controls.zoomSpeed = 1;
-      camera.position.set(-0.58, 2.88, 10);
+      camera.position.set(-0.58, 2.88, 7);
 
       const animate = function () {
         requestAnimationFrame(animate);
@@ -174,28 +174,15 @@ export default function TreeMain({ pathname }) {
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
         raycaster.setFromCamera(mouse, camera);
-        let intersects = raycaster.intersectObjects(scene.children);
+        const intersects = raycaster.intersectObjects(scene.children);
         if (intersects.length && intersects[0].object.type === 'Mesh') {
           setMemoCliced(true);
-          const moveCamPos = [
-            intersects[0].object.position.x,
-            intersects[0].object.position.y,
-            intersects[0].object.position.z - 3,
-          ];
-          camera.position.set(...moveCamPos);
-          // 동작함
-          // for (let i = 0; i < intersects.length; i++) {
-          //   if (intersects[i].object.type === 'Mesh') {
-          //     setMemoCliced(true);
-          //     camera.position.set(
-          //       intersects[i].object.position.x,
-          //       intersects[i].object.position.y,
-          //       intersects[i].object.position.z - 3
-          //     );
-          //   } else {
-          //     return;
-          //   }
-          // }
+          // const moveCamPos = [
+          //   intersects[0].object.position.x,
+          //   intersects[0].object.position.y,
+          //   intersects[0].object.position.z - 3,
+          // ];
+          // camera.position.set(...moveCamPos);
         }
       };
 
@@ -219,6 +206,7 @@ export default function TreeMain({ pathname }) {
           <p>願いの木を呼んでいます。</p>
         </LoaderText>
       )}
+      {/* // 메모가 클릭됐을 때 랜덤한 내용의 쪽지 영상이 출력되도록 */}
       {memoClicked ? <SeeMemo setMemoCliced={setMemoCliced} /> : null}
       <TreeContainer ref={mountRef} pathname={pathname}></TreeContainer>
     </WishTreeContainer>

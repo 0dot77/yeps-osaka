@@ -1,5 +1,6 @@
 import paper from '../assets/images/paper.jpg';
 import styled from 'styled-components';
+import memoData from '../db/memoData';
 
 const Container = styled.section`
   position: absolute;
@@ -51,11 +52,11 @@ export default function SeeMemo({ setMemoCliced }) {
     <Container>
       <MovieContainer>
         <iframe
-          src="https://www.youtube.com/embed/jb8VG9hKT4g"
+          src={memoData[Math.trunc(Math.random() * memoData.length)]}
           title="YouTube video player"
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
+          allowFullScreen
         ></iframe>
       </MovieContainer>
       <ModalText>

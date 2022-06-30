@@ -27,9 +27,7 @@
 ├── react@18.1.0
 ├── recoil@0.7.3
 ├── styled-components@5.3.5
-├── three-stdlib@2.10.1
 ├── three@0.140.2
-├── uid@2.0.0
 └── vite@2.9.6
 ```
 
@@ -131,12 +129,14 @@ _2022.06.27_
   - public/\_redirect 파일을 만들어서 해결했다.
 - [x] 소원 나무와 쪽지가 겹쳐서 클릭되는 문제 해결해보기
   - [Threejs Raycaster.params](https://threejs.org/docs/#api/en/core/Raycaster.params)
-- [ ] 나머지 페이지 완성하기
+- [x] 나머지 페이지 완성하기
   - [x] firebase로 fetch 할 때 loading 깔끔하게 만들어보기
-  - [ ] 소원, 신당 텍스트 수정하기
-  - [ ] 메인 소원 추가하기
-    - [ ] 각각의 쪽지가 둥둥 떠다니는 느낌을 구현하기
-  - [ ] 유니티 Webgl 올리기
-- [ ] Interview page : 멀티 스크롤 구현
+  - [x] 소원, 신당 텍스트 수정하기
 
-_2022.06.28_
+_추가적으로.._
+
+- [ ] 메인 소원 추가하기
+  - [ ] 각각의 쪽지가 둥둥 떠다니는 느낌을 구현하기
+- [ ] 유니티 Webgl 올리기
+- [ ] Interview page : 멀티 스크롤 구현
+- [ ] Object page : 스크롤 가능하도록!
