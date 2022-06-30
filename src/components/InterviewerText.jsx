@@ -49,6 +49,9 @@ const InterviewerJapDescription = styled.div`
   word-break: break-all;
   display: flex;
   justify-content: center;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const DescriptionTextBox = styled.div`

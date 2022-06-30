@@ -31,6 +31,9 @@ const KorTextBox = styled.div`
   width: 90%;
   height: 100%;
   overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   align-items: center;
   p {
     height: 100%;
@@ -46,6 +49,9 @@ const JapTextBox = styled.div`
   height: 100%;
   overflow: scroll;
   margin-left: 10px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   p {
     height: 100%;
   }

@@ -27,6 +27,10 @@ const Interviewer = styled.article`
   width: 100%;
   height: 100%;
   grid-column: 2/3;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const JapSection = styled.ul`
