@@ -1,3 +1,3 @@
-const memoData = ['https://www.youtube.com/embed/jb8VG9hKT4g'];
+const memoData = ['https://www.youtube.com/embed/HIO3U52NhS0', 'https://www.youtube.com/embed/c-czH4U4BHE'];
 
 export default memoData;
