@@ -43,6 +43,7 @@ const MenuContainer = styled.ul`
   font-size: 1.5rem;
   text-align: center;
   grid-row: 3;
+  height: 100%;
 `;
 
 const Menu = styled.li`
@@ -52,6 +53,7 @@ const Menu = styled.li`
     line-height: 2;
     padding-bottom: 10px;
   }
+
   &.realTime {
     a {
       text-shadow: ${(props) =>
@@ -102,23 +104,6 @@ const Menu = styled.li`
           : null};
     }
   }
-
-  &.webGame {
-    a {
-      text-shadow: ${(props) =>
-        props.isHoveredClassName === 'webGame'
-          ? `0px 4px 19px rgba(255, 255, 255, 0.9)`
-          : props.isClickedMenuClass === 'webGame'
-          ? `0px 4px 19px rgba(255, 255, 255, 0.9)`
-          : null};
-      border-bottom: ${(props) =>
-        props.isHoveredClassName === 'webGame'
-          ? `1px solid #ffffff`
-          : props.isClickedMenuClass === 'webGame'
-          ? `1px solid #ffffff`
-          : null};
-    }
-  }
 `;
 
 export default function Nav({
@@ -131,7 +116,6 @@ export default function Nav({
   const [isMenuClicked, setIsMenuClicked] = useRecoilState(menuClicked);
   const [isClickedMenuClass, setIsClickedMenuClass] = useRecoilState(clickedMenu);
   const navigate = useNavigate();
-
   const handleMoveToMain = () => {
     isBoxButtonClicked(!boxButtonClicked);
     navigate(`/`);
