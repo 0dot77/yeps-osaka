@@ -143,7 +143,7 @@ _추가적으로.._
 ![work-display](imgs/whole-display.jpeg)
 ![presentation](imgs/pt.jpg)
 ![peoples1](imgs/peoples.jpg)
-![peoples2](imgs/peoples-2.jpg)
+![peoples2](imgs/peoples-2.JPG)
 
 - 웹 개발은 정말 쉽지 않다는 것을 깨달은 작업
 - 그럼에도 불구하고, 웹의 확장 가능성에 대한 생각을 더 키울 수 있었던 작업
